@@ -113,26 +113,6 @@ const Landing = () => {
                     </button>
                   </div>
                 </div>
-
-                {/* <div className="d-none" id="submitSuccessMessage">
-                    <div className="text-center mb-3 mt-2">
-                      <div className="fw-bolder" style={{ fontSize: 20 }}>
-                        Form submission successful!
-                      </div>
-                      To activate this form, sign up at
-                      <br />
-                      <span href="https://startbootstrap.com/solution/contact-forms"></span>
-                    </div>
-                  </div>
-
-                  <div className="d-none" id="submitErrorMessage">
-                    <div
-                      className="text-center text-danger mb-3 mt-2 test1"
-                      style={{ fontSize: 20 }}
-                    >
-                      Error sending message!
-                    </div>
-                  </div> */}
               </form>
             </div>
           </div>
