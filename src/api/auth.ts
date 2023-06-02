@@ -1,4 +1,4 @@
-import { ENDPOINT } from "~/const/auth";
+import { ENDPOINT } from "~/const/api/auth";
 import { axiosDefaultInstance, errorResponseBody, responseBody } from ".";
 
 async function login(data: AuthRequest) {

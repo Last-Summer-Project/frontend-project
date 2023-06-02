@@ -4,3 +4,5 @@ interface ApiResponse<T> {
   message?: string;
   data?: T;
 }
+
+type Status = "NOT_STARTED" | "IN_PROGRESS" | "DONE";
