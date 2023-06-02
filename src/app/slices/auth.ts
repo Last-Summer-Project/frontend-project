@@ -1,16 +1,18 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 import AuthService from "../service/auth.service";
 import { setMessage } from "./message";
 
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "~/const/auth";
 import { getTokenData } from "~/utils/token";
-import { TokenStorage } from "~/types";
 
+// Default null
 const nullTokenStorage: TokenStorage = {
   access: null,
   refresh: null
 };
+
+// Load data
 const tokenStorage: TokenStorage = {
   access: sessionStorage.getItem(ACCESS_TOKEN_KEY),
   refresh: localStorage.getItem(REFRESH_TOKEN_KEY)
@@ -89,7 +91,7 @@ export const refresh = createAsyncThunk(
   }
 );
 
-const initialState = user
+const initialState: AuthState = user
   ? { isLoggedIn: true, user, token: tokenStorage }
   : { isLoggedIn: false, user: null, token: tokenStorage };
 
@@ -99,7 +101,7 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     // Login
-    builder.addCase(login.fulfilled, (state, action) => {
+    builder.addCase(login.fulfilled, (state, action: PayloadAction<AuthStatePayload>) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
       state.token = action.payload.token;
@@ -116,7 +118,7 @@ const authSlice = createSlice({
     });
 
     // Refresh
-    builder.addCase(refresh.fulfilled, (state, action) => {
+    builder.addCase(refresh.fulfilled, (state, action: PayloadAction<AuthStatePayload>) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
       state.token = action.payload.token;
