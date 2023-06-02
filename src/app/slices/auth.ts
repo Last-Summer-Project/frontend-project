@@ -4,7 +4,7 @@ import AuthService from "../service/auth.service";
 import { setMessage } from "./message";
 
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "~/const/auth";
-import { getTokenData } from "~/utils/token";
+import { getTokenData } from "~/app/utils/token";
 
 // Default null
 const nullTokenStorage: TokenStorage = {
@@ -18,9 +18,8 @@ const tokenStorage: TokenStorage = {
   refresh: localStorage.getItem(REFRESH_TOKEN_KEY)
 };
 const user = (() => {
-  const token = tokenStorage.access ?? tokenStorage.refresh;
-  if (!token) return null;
-  return getTokenData(token);
+  if (!tokenStorage.access) return null;
+  return getTokenData(tokenStorage.access);
 })();
 
 export const login = createAsyncThunk(
@@ -91,6 +90,17 @@ export const refresh = createAsyncThunk(
   }
 );
 
+export const setUserFromToken = createAsyncThunk(
+  "auth/setUser",
+  async (token: string | null = tokenStorage.access, thunkAPI) => {
+    if (!token) return thunkAPI.rejectWithValue(token);
+    return {
+      user: getTokenData(token),
+      token: tokenStorage
+    };
+  }
+);
+
 const initialState: AuthState = user
   ? { isLoggedIn: true, user, token: tokenStorage }
   : { isLoggedIn: false, user: null, token: tokenStorage };
@@ -101,36 +111,42 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     // Login
-    builder.addCase(login.fulfilled, (state, action: PayloadAction<AuthStatePayload>) => {
-      state.isLoggedIn = true;
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-    });
-    builder.addCase(login.rejected, (state, _) => {
+    builder.addCase(
+      login.fulfilled,
+      (state, action: PayloadAction<AuthStatePayload>) => {
+        state.isLoggedIn = true;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+      }
+    );
+    builder.addCase(login.rejected, (state) => {
       state.isLoggedIn = false;
     });
 
     // Logout
-    builder.addCase(logout.fulfilled, (state, _) => {
+    builder.addCase(logout.fulfilled, (state) => {
       state.isLoggedIn = false;
       state.user = null;
       state.token = nullTokenStorage;
     });
 
     // Refresh
-    builder.addCase(refresh.fulfilled, (state, action: PayloadAction<AuthStatePayload>) => {
-      state.isLoggedIn = true;
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-    });
-    builder.addCase(refresh.rejected, (state, _) => {
+    builder.addCase(
+      refresh.fulfilled,
+      (state, action: PayloadAction<AuthStatePayload>) => {
+        state.isLoggedIn = true;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+      }
+    );
+    builder.addCase(refresh.rejected, (state) => {
       state.isLoggedIn = false;
       state.user = null;
       state.token = nullTokenStorage;
     });
 
     // Verify
-    builder.addCase(verify.rejected, (state, _) => {
+    builder.addCase(verify.rejected, (state) => {
       state.isLoggedIn = false;
       state.user = null;
       state.token = {

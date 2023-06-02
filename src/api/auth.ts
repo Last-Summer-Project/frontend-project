@@ -19,16 +19,14 @@ async function refresh(data: AuthRefreshRequest) {
     });
 }
 
-
 async function verify() {
   return axiosDefaultInstance
-    .post(ENDPOINT.VERIFY)
+    .get(ENDPOINT.VERIFY)
     .then(res => responseBody<AuthResponse>(res))
     .catch(res => {
       throw errorResponseBody<AuthResponse>(res);
     });
 }
-
 
 const Auth = {
   login,

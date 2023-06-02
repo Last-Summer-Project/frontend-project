@@ -4,7 +4,6 @@ import { JWTPayload } from "~/types";
 export function getTokenData(token: string) {
   try {
     const decodedJwt = decodeJwt(token) as JWTPayload
-    console.log(decodedJwt)
 
     const deviceId = decodedJwt.device_id;
     const loginId = decodedJwt.login_id;

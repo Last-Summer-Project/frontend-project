@@ -1,3 +1,4 @@
+import { setAuthorizationToken } from "~/api";
 import Auth from "~/api/auth";
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "~/const/auth";
 
@@ -6,6 +7,8 @@ function setAuthData(res: AuthResponse | undefined) {
   const refreshToken = res?.refresh ?? "";
   sessionStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
   localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+
+  setAuthorizationToken(accessToken)
 }
 
 async function login(loginId: string, password: string) {
