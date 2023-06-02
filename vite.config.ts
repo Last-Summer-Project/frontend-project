@@ -6,4 +6,12 @@ import { reactScopedCssPlugin } from 'rollup-plugin-react-scoped-css'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [ tsconfigPaths(), react(), reactScopedCssPlugin()],
+  server: {
+    proxy: {
+      '/api': {
+        target: "http://172.30.1.3",
+        changeOrigin: true
+      }
+    }
+  }
 });

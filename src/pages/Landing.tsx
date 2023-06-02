@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { login } from "~/api/auth";
 import video from "~/assets/bg.mp4";
 import logo from "~/assets/logo.png";
 import "~/assets/scss/landing.scoped.scss";
+
 
 interface Props {}
 
@@ -24,7 +26,9 @@ class LandingPage extends Component<Props, State> {
 
   onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(this.state.loginId, this.state.password)
+    login({ loginId: this.state.loginId, password: this.state.password }).then(res => {
+      console.log(res)
+    })
   }
 
   render() {
