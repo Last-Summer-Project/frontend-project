@@ -3,6 +3,10 @@ interface AuthRequest {
     password: string
 }
 
+interface AuthRefreshRequest {
+    refresh: string
+}
+
 /**
  * Basic Auth Response
  * @interface

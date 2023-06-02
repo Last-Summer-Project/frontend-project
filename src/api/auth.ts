@@ -1,18 +1,39 @@
-import { axiosDefaultInstance, errorResponseBody, responseBody, setAuthorizationToken } from ".";
+import { ENDPOINT } from "~/const/auth";
+import { axiosDefaultInstance, errorResponseBody, responseBody } from ".";
 
-export async function login(data: AuthRequest) {
+async function login(data: AuthRequest) {
   return axiosDefaultInstance
-    .post("/auth/login", data)
+    .post(ENDPOINT.LOGIN, data)
     .then(res => responseBody<AuthResponse>(res))
     .catch(res => {
       throw errorResponseBody<AuthResponse>(res);
-    })
-    .then(res => {
-      const accessToken = res.data?.access ?? "";
-      const refreshToken = res.data?.refresh ?? "";
-      sessionStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
-      setAuthorizationToken(accessToken);
-      return res
     });
 }
+
+async function refresh(data: AuthRefreshRequest) {
+  return axiosDefaultInstance
+    .post(ENDPOINT.REFRESH, data)
+    .then(res => responseBody<AuthResponse>(res))
+    .catch(res => {
+      throw errorResponseBody<AuthResponse>(res);
+    });
+}
+
+
+async function verify() {
+  return axiosDefaultInstance
+    .post(ENDPOINT.VERIFY)
+    .then(res => responseBody<AuthResponse>(res))
+    .catch(res => {
+      throw errorResponseBody<AuthResponse>(res);
+    });
+}
+
+
+const Auth = {
+  login,
+  refresh,
+  verify
+};
+
+export default Auth;
