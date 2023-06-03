@@ -9,9 +9,9 @@ import { login } from "~/app/slices/auth";
 import { setMessage, clearMessage } from "~/app/slices/message";
 import { checkLoggedIn } from "~/app/utils";
 
-import "~/assets/scss/landing.scoped.scss";
+import "~/assets/scss/landing/landing.scoped.scss";
 import video from "~/assets/bg.mp4";
-import logo from "~/assets/logo.png";
+import logo from "~/assets/img/logo.png";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -114,26 +114,6 @@ const Landing = () => {
                   </div>
                 </div>
               </form>
-            </div>
-          </div>
-        </div>
-        <div className="py-2">
-          <button className="btn btn-warning" onClick={showAlert}>
-            Trigger alert
-          </button>
-          <div className="position-absolute top-0 end-0 m-4">
-            <div
-              className="alert alert-warning alert-dismissible fade"
-              ref={alertRef}
-              role="alert"
-            >
-              {message}
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="alert"
-                aria-label="Close"
-              ></button>
             </div>
           </div>
         </div>
