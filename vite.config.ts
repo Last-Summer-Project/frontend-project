@@ -19,5 +19,13 @@ export default defineConfig({
         changeOrigin: true
       }
     }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // Disable sass warnings on bootstrap
+        quietDeps: true
+      }
+    }
   }
 });
