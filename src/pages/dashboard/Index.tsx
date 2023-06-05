@@ -65,15 +65,10 @@ const Dashboard = () => {
           <div className="row">
             <div className="col-12">
               <div className="card mb-4">
-                <div className="card-header pb-0">
+                <div className="card-header pb-2">
                   <h6 className="w-10 omyu" style={{ fontSize: 20 }}>
                     대시보드
                   </h6>
-                </div>
-                <div className="card-body px-0 pt-0 pb-2">
-                  <div className="table-responsive p-0">
-                    <table className="table align-items-center justify-content-center mb-0"></table>
-                  </div>
                 </div>
               </div>
             </div>
@@ -83,7 +78,7 @@ const Dashboard = () => {
       <div className="div-left omyu" style={{ width: "500px" }}>
         <button
           type="button"
-          className="btn w-100 my-1 mb-2 omyu"
+          className="btn w-100 my-1 mb-1 omyu"
           style={{
             backgroundColor: "#BAD98B",
             display: "inline-block",
@@ -99,7 +94,7 @@ const Dashboard = () => {
       <div className="div-right omyu" style={{ width: "500px" }}>
         <button
           type="button"
-          className="btn w-100 my-1 mb-2 omyu"
+          className="btn w-100 my-1 mb-1 omyu"
           style={{
             backgroundColor: "#BAD98B",
             display: "inline-block",
@@ -113,7 +108,7 @@ const Dashboard = () => {
         </button>
       </div>
       <div className="container-fluid py-4" style={{ float: "left" }}>
-        <div style={{ height: "3rem" }}></div>
+        <div style={{ height: "2rem" }}></div>
 
         <div
           className="col-xl-3 col-sm-6 mb-xl-0 mb-4"
@@ -175,7 +170,7 @@ const Dashboard = () => {
                     >
                       온도
                     </p>
-                    <p className="omyu">{log?.temperature}°C</p>
+                    <p className="omyu" style={{ fontSize: "1.5em" }}>{log?.temperature}°C</p>
                   </div>
                 </div>
                 <div className="col-4 text-end">
@@ -202,7 +197,7 @@ const Dashboard = () => {
           <div className="card">
             <div
               className="card-body p-3"
-              style={{ width: "400px", height: " 100px" }}
+              style={{ width: "400px", height: "100px" }}
             >
               <div className="row">
                 <div className="col-8">
@@ -213,7 +208,7 @@ const Dashboard = () => {
                     >
                       습도
                     </p>
-                    <p className="omyu">{log?.humidity}%</p>
+                    <p className="omyu" style={{ fontSize: "1.5em" }}>{log?.humidity}%</p>
                   </div>
                 </div>
                 <div className="col-4 text-end">
@@ -248,9 +243,29 @@ const Dashboard = () => {
                   <div className="numbers">
                     <p
                       className=" mb-0 text-uppercase font-weight-bold w-30 omyu"
-                      style={{ fontSize: 20 }}
+                      style={{
+                        fontSize: 20,
+                        color:
+                          log?.detection.result === "0"
+                            ? "inherit"
+                            : "rebeccapurple"
+                      }}
                     >
                       작물 질병
+                    </p>
+                    <p className="omyu">
+                      {(() => {
+                        switch (log?.detection.result ?? -1) {
+                          case "0":
+                            return "정상 입니다.";
+                          case "1":
+                            return "상추균핵병 입니다.";
+                          case "2":
+                            return "상추노균병 입니다.";
+                          default:
+                            return "Unknown";
+                        }
+                      })()}
                     </p>
                   </div>
                 </div>
@@ -268,7 +283,7 @@ const Dashboard = () => {
                     hidden={log?.detection.result == "0"}
                     className="btn bg-gradient-success w-auto my-4 mb-2 omyu-important"
                     onClick={() => movePage(DASHBOARD.SICK)}
-                    style={{fontSize: "15px" }}
+                    style={{ fontSize: "15px" }}
                   >
                     알아보기
                   </button>

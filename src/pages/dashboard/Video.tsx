@@ -6,13 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import useInterval from "~/components/useInterval";
 import { DASHBOARD, VIDEO_HOST } from "~/const/url";
+import { convertResponse } from "~/app/api/timelapse";
 
 const Video = () => {
   const navigate = useNavigate();
 
   const { timelapse } = useAppSelector(state => state.timelapse);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const linkRef = useRef<HTMLAnchorElement>(null);
   const vidSrc =
     timelapse?.status !== "DONE" ? making : VIDEO_HOST + timelapse?.result;
 
@@ -26,10 +27,22 @@ const Video = () => {
     dispatch(latest())
       .unwrap()
       .then(v => {
-        if (v?.timelapse?.id === -1) {
+        if ((v?.timelapse?.id ?? -1) < 1) {
           navigate(DASHBOARD.VIDEO_NEW);
         }
         vidLoader();
+      })
+      .catch(reason => {
+        try {
+          const d = reason as ApiResponse<
+            TimelapseResponse | TimelapseRequestRaw
+          >;
+          if (d.httpStatus === 404) {
+            navigate(DASHBOARD.VIDEO_NEW);
+          }
+        } catch (e) {
+          console.error(e);
+        }
       });
   }, [dispatch, navigate]);
 
@@ -40,6 +53,12 @@ const Video = () => {
     },
     timelapse?.status === "DONE" ? null : 10 * 1000
   );
+
+  const filename = (_timelapse?: TimelapseResponseRaw) => {
+    if(!_timelapse) return "";
+    const timelapse = convertResponse(_timelapse)
+    return `LastSummer-Timelapse-${timelapse.logStartDate.getMonth()}월_${timelapse.logStartDate.getDate()}일~${timelapse.logStartDate.getMonth()}월_${timelapse.logStartDate.getDate()}일.mp4`
+  }
 
   return (
     <>
@@ -118,7 +137,6 @@ const Video = () => {
                         </button>
 
                         <button
-                          ref={buttonRef}
                           type="button"
                           hidden={timelapse?.status !== "DONE"}
                           className="btn bg-gradient-info w-auto my-4 mb-2 omyu-important"
@@ -127,10 +145,11 @@ const Video = () => {
                             marginLeft: "1vh",
                             zIndex: 1
                           }}
-                          onClick={() => window.open(vidSrc, "_blank")}
+                          onClick={() => linkRef.current?.click()}
                         >
                           다운로드
                         </button>
+                        <a download={filename(timelapse)} href={vidSrc} ref={linkRef}/>
                       </div>
                     </div>
                   </div>
