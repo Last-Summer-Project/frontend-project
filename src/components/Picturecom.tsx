@@ -5,7 +5,7 @@ interface Props {
 
 function Picturecom(props: Props) {
   const img = props.img ? (
-    <img src={props.img} width="500px" height="500px" />
+    <img src={props.img} style={{ objectFit: "contain"}} />
   ) : (
     <svg
       className="bd-placeholder-img card-img-top"

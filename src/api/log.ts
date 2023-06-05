@@ -30,6 +30,17 @@ async function latest_detected() {
     });
 }
 
+async function detected_per_day() {
+  return axiosDefaultInstance
+    .get(ENDPOINT.DETECTED_PER_DAY)
+    .then(res => responseBody<LogResponseRaw[]>(res))
+    .catch(res => {
+      throw errorResponseBody<LogResponse | LogResponseRaw>(res);
+    });
+}
+
+
+
 async function recent() {
   return axiosDefaultInstance
     .get(ENDPOINT.RECENT)
@@ -42,6 +53,7 @@ async function recent() {
 const DeviceLog = {
   latest,
   latest_detected,
+  detected_per_day,
   recent
 };
 

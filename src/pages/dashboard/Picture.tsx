@@ -1,8 +1,24 @@
 import Picturecom from "~/components/Picturecom";
 
 import img2 from "~/assets/img/image.png";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "~/app/hooks";
+import { detectedPerDay } from "~/app/slices/log";
 
 const Picture = () => {
+  const { logs } = useAppSelector(state => state.log);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(detectedPerDay());
+  }, [dispatch]);
+
+  const chunk = (arr: any[], size: number) =>
+    Array.from({ length: Math.ceil(arr.length / size) }, (_: any, i: number) =>
+      arr.slice(i * size, i * size + size)
+    );
+
   return (
     <main className="main-content position-relative border-radius-lg ">
       <nav
@@ -47,21 +63,20 @@ const Picture = () => {
                     <div className="album py-5 bg-light">
                       <div className="container">
                         <div className="table align-items-center justify-content-center mb-0">
-                          <div>
-                            <Picturecom name="6월 16일" />
-                            <Picturecom name="6월 15일" />
-                            <Picturecom name="6월 14일" />
-                          </div>
-                          <div>
-                            <Picturecom name="6월 13일" />
-                            <Picturecom name="6월 12일" />
-                            <Picturecom name="6월 11일" />
-                          </div>
-                          <div>
-                            <Picturecom name="6월 10일" />
-                            <Picturecom name="6월 9일" />
-                            <Picturecom name="6월 8일" />
-                          </div>
+                          {chunk(logs ?? [], 3).map((ls: LogResponseRaw[]) => (
+                            <div>
+                              {ls.map(l => {
+                                const d = new Date(l.timestamp);
+                                const n = `${d.getMonth() + 1}월 ${d.getDate()}일`;
+                                return (
+                                  <Picturecom
+                                    name={n}
+                                    img={"/image/" + l.imageUrl}
+                                  />
+                                );
+                              })}
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
