@@ -263,6 +263,15 @@ const Dashboard = () => {
                       fill: "currentColor"
                     }}
                   ></img>
+                  <button
+                    type="button"
+                    hidden={log?.detection.result == "0"}
+                    className="btn bg-gradient-success w-auto my-4 mb-2 omyu-important"
+                    onClick={() => movePage(DASHBOARD.SICK)}
+                    style={{fontSize: "15px" }}
+                  >
+                    알아보기
+                  </button>
                 </div>
               </div>
             </div>

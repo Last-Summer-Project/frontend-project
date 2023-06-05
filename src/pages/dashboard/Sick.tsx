@@ -72,7 +72,7 @@ export default function Sick() {
           />
         </div>
 
-        <div style={{ height: "10rem", width: "1250px" }}>
+        <div style={{ height: "10rem", width: "1240px" }}>
           <div className="container-fluid py-4">
             <div className="row">
               <div className="col-12">
