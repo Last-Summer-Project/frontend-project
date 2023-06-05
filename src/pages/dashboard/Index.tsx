@@ -112,9 +112,9 @@ const Dashboard = () => {
           <div
             className="card"
             style={{
-              width: "1200px",
-              height: "350px",
-              margin: "0 0 0 90px",
+              width: "640px",
+              height: "360px",
+              margin: "0 0 0 180px",
               zIndex: 1,
             }}
           >
@@ -221,7 +221,7 @@ const Dashboard = () => {
           className="col-xl-3 col-sm-6 mb-xl-0 mb-4"
           style={{
             marginLeft: "360px",
-            width: " 400px",
+            width: "400px",
             height: "100px",
             zIndex: 1,
           }}
