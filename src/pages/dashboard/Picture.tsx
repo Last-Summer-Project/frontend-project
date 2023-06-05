@@ -63,7 +63,7 @@ const Picture = () => {
                   <div className="table-responsive p-0">
                     <div className="album py-5 bg-light">
                       <div className="container">
-                        <div className="table align-items-center justify-content-center mb-0">
+                        <div className="align-items-center justify-content-center mb-0">
                           {chunk(logs ?? [], 3).map((ls: LogResponseRaw[]) => (
                             <div>
                               {ls.map(l => {
@@ -71,6 +71,7 @@ const Picture = () => {
                                 const n = `${d.getMonth() + 1}월 ${d.getDate()}일`;
                                 return (
                                   <Picturecom
+                                    key={l.imageUrl}
                                     name={n}
                                     img={IMAGE_HOST + l.imageUrl}
                                   />
