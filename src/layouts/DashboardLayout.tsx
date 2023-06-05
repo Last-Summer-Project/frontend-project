@@ -1,18 +1,40 @@
-import { Outlet } from "react-router-dom";
-import "~/assets/scss/dashboard/dashboard.scss"
+import { Outlet, useNavigate } from "react-router-dom";
+import "~/assets/scss/dashboard/dashboard.scss";
 import Navbar from "../components/Navbar";
+import { useAppDispatch, useAppSelector } from "~/app/hooks";
+import { useEffect } from "react";
+import { clearMessage, setMessage } from "~/app/slices/message";
+import { checkLoggedIn } from "~/app/utils";
+import { LANDING } from "~/const/url";
 
 interface Props {
   children?: React.ReactElement;
 }
 
 const DashboardLayout = ({ children }: Props) => {
+  const navigate = useNavigate();
+
+  const auth = useAppSelector(state => state.auth);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(clearMessage());
+
+    checkLoggedIn(auth, dispatch).then(result => {
+      if (!result) {
+        setMessage("Redirecting to landing page...");
+        navigate(LANDING);
+      }
+    });
+  }, [dispatch, auth, navigate]);
+
   return (
-    <>
+    <div id="Dashboard">
       <div className="min-height-200 bg-primary position-absolute w-100"></div>
       <Navbar />
       {children || <Outlet />}
-    </>
+    </div>
   );
 };
 

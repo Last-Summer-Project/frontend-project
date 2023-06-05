@@ -14,59 +14,60 @@
   font-family: "omyu_pretty";
 }
 
-.App {
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-}
+#Dashboard {
+  .App {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+  }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    height: 40vmin;
+    pointer-events: none;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
   }
-  to {
-    transform: rotate(360deg);
+
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
   }
-}
 
-.SidebarWrapper {
-  width: 200px;
-  height: 100%;
-  background-color: rgb(131, 196, 131);
-  padding: 2rem;
-}
+  .App-link {
+    color: #61dafb;
+  }
 
-.Content {
-  margin: 20px;
-}
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 
-.Sidebar {
+  .SidebarWrapper {
+    width: 200px;
+    height: 100%;
+    background-color: rgb(131, 196, 131);
+    padding: 2rem;
+  }
+
+  .Content {
+    margin: 20px;
+  }
+
+  .Sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -75,52 +76,121 @@
     background-color: #f5f5f5;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
     overflow-y: auto;
-    }
+  }
 
-.Sidebar-ul {
+  .Sidebar-ul {
     border: 10px solid rgb(131, 196, 131);
     padding: 0;
     margin: 0;
-}
+  }
 
-.Sidebar-li {
+  .Sidebar-li {
     padding: 10px;
     cursor: pointer;
     padding-top: 8rem;
     border-top: 1px solid gray;
-}
+  }
 
-.Sidebar-li:first-child {
+  .Sidebar-li:first-child {
     border-top: none;
-}
+  }
 
-@font-face {
-  font-family: 'omyu_pretty';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-.test1{font-family: 'omyu_pretty';}
+  @font-face {
+    font-family: "omyu_pretty";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2")
+      format("woff2");
+    font-weight: normal;
+    font-style: normal;
+  }
+  .test1 {
+    font-family: "omyu_pretty";
+  }
 
-.bg-test123 {
-  background-color: rgb(146, 190, 169, 1);
-  padding: 0;
-  margin: 0;
-}
+  .bg-test123 {
+    background-color: rgb(146, 190, 169, 1);
+    padding: 0;
+    margin: 0;
+  }
 
-.div-left {
-  width: 20%;
-  float: left;
-  box-sizing: border-box;
-  margin-left : 150px;
-  
-}
-.div-right {
-  width: 20%;
-  float: right;
-  box-sizing: border-box;
-  margin-right : 300px;
-}
-.angle {
-  background-color: rgb(76, 142, 110);
+  .div-left {
+    width: 20%;
+    float: left;
+    box-sizing: border-box;
+    margin-left: 150px;
+  }
+  .div-right {
+    width: 20%;
+    float: right;
+    box-sizing: border-box;
+    margin-right: 300px;
+  }
+  .angle {
+    background-color: rgb(76, 142, 110);
+  }
+
+  .pic {
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+  }
+
+  .text {
+    width: 200px;
+    height: 200px;
+    background: #000000;
+    opacity: 0;
+    padding: 10px;
+  }
+
+  .text p {
+    padding-top: 3%;
+  }
+
+  .pic:hover .text {
+    opacity: 0.7;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  p.omyu {
+    font-size: 20px;
+  }
+
+  .matrix-board {
+    display: grid;
+    grid-template-rows: 210px 210px;
+    grid-template-columns: 210px 210px;
+    justify-content: end; /* 요소를 오른쪽으로 정렬 */
+  }
+  .martix-container {
+    display: flex;
+    justify-content: right;
+    padding-right: 20px;
+  }
+  .matrix-box {
+    background-color: white;
+    border: 1px solid hsla(0, 0%, 0%, 0.1);
+    box-shadow: 0 0.15em 0.175em hsla(0, 0%, 0%, 0.1);
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    color: #0b9dc1;
+    font-family: "Open Sans", sans-serif;
+    font-size: 30px;
+    transition: 500ms;
+    transition-timing-function: ease;
+  }
+  .matrix-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 0 1px 0 rgba(0, 0, 0, 0.25);
+    transition: 500ms;
+    transition-timing-function: ease;
+  }
+  .martix-text {
+    display: flex;
+    justify-content: left;
+    padding-left: 50px;
+  }
 }

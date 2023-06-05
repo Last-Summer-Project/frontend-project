@@ -1,6 +1,4 @@
-import img from "~/assets/img/mascot.png";
 import img2 from "~/assets/img/mainbode.png";
-import img3 from "~/assets/img/icon.png";
 import img4 from "~/assets/img/logo.png";
 import img5 from "~/assets/img/humidity.png";
 import img6 from "~/assets/img/temperature.png";
@@ -100,7 +98,7 @@ const Dashboard = () => {
         </button>
       </div>
       <div className="container-fluid py-4" style={{ float: "left" }}>
-        <div style={{ height: "3rem;" }}></div>
+        <div style={{ height: "3rem" }}></div>
 
         <div
           className="col-xl-3 col-sm-6 mb-xl-0 mb-4"
@@ -114,8 +112,8 @@ const Dashboard = () => {
           <div
             className="card"
             style={{
-              width: "1200px;",
-              height: "350px;",
+              width: "1200px",
+              height: "350px",
               margin: "0 0 0 90px",
               zIndex: 1,
             }}
@@ -129,7 +127,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <div className="right omyu" style={{ right: "0.01px;" }}>
+          <div className="right omyu" style={{ right: "0.01px" }}>
             <button
               onClick={govideo}
               type="button"

@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Alert } from "bootstrap";
 
 import { DASHBOARD } from "~/const/url";
 
@@ -20,22 +19,8 @@ const Landing = () => {
   const [password, setPassword] = useState("");
 
   const auth = useAppSelector(state => state.auth);
-  const { message } = useAppSelector(state => state.message);
 
   const dispatch = useAppDispatch();
-
-  const alertRef = useRef<HTMLDivElement>(null);
-  const showAlert = () => {
-    const alertEle = alertRef.current;
-    if (!alertEle) return;
-    const bsAlert = new Alert(alertEle);
-    alertEle?.classList.add("show");
-
-    // hide alert after 5 seconds
-    setTimeout(() => {
-      bsAlert.close();
-    }, 3000);
-  };
 
   useEffect(() => {
     dispatch(clearMessage());

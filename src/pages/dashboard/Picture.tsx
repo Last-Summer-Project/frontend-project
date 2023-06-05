@@ -1,8 +1,6 @@
 import Picturecom from "~/components/Picturecom";
 
-import img from "~/assets/img/mascot.png";
 import img2 from "~/assets/img/image.png";
-import img3 from "~/assets/img/icon.png";
 
 const Picture = () => {
   return (

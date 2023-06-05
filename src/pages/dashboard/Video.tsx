@@ -45,7 +45,7 @@ export default function Video() {
                 </div>
                 <div className="card-body px-0 pt-0 pb-2">
                   <div className="table-responsive p-0">
-                    <table className="table align-items-center justify-content-center mb-0">
+                    <div className="table align-items-center justify-content-center mb-0">
                       <video
                         width="720px"
                         height="480px"
@@ -66,7 +66,7 @@ export default function Video() {
                       >
                         다운로드
                       </button>
-                    </table>
+                    </div>
                   </div>
                 </div>
               </div>
