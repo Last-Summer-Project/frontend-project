@@ -41,7 +41,7 @@ async function all() {
 
 async function request(data: TimelapseRequest) {
   return axiosDefaultInstance
-    .post(ENDPOINT.LATEST, convertRequest(data))
+    .post(ENDPOINT.REQUEST, convertRequest(data))
     .then(res => responseBody<TimelapseResponseRaw>(res))
     .catch(res => {
       throw errorResponseBody<TimelapseResponse | TimelapseResponseRaw>(res);

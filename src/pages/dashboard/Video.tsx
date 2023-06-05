@@ -24,8 +24,8 @@ const Video = () => {
 
   useEffect(() => {
     dispatch(latest());
-    if (timelapse?.id == -1) {
-      navigate(DASHBOARD.VIDEO_NEW)
+    if (timelapse?.id === -1) {
+      navigate(DASHBOARD.VIDEO_NEW);
     }
 
     vidLoader();
@@ -82,11 +82,11 @@ const Video = () => {
                 </div>
                 <div className="card-body px-0 pt-0 pb-2">
                   <div className="table-responsive p-0">
-                    <div className="table align-items-center justify-content-center">
+                    <div className="align-items-center justify-content-center">
                       <video
                         width="720px"
                         height="480px"
-                        controls
+                        controls={timelapse?.status === "DONE"}
                         autoPlay
                         loop
                         src={vidSrc}
@@ -97,23 +97,39 @@ const Video = () => {
                         }}
                       ></video>
 
-                      <button
-                        ref={buttonRef}
-                        type="button"
-                        hidden={timelapse?.status !== "DONE"}
-                        className="btn bg-gradient-info w-auto my-4 mb-2 omyu-important"
-                        style={{
-                          fontSize: "15px",
-                          zIndex: 1,
-                          display: "block",
-                          margin: "0 auto"
-                        }}
-                        onClick={() =>
-                          window.open(vidSrc, "_blank")
-                        }
+                      <div
+                        className="text-center align-items-center justify-content-center"
+                        style={{ display: "block", margin: "0 auto" }}
                       >
-                        다운로드
-                      </button>
+                        <button
+                          type="button"
+                          hidden={timelapse?.status !== "DONE"}
+                          className="btn bg-gradient-info w-auto my-4 mb-2 omyu-important"
+                          style={{
+                            fontSize: "15px",
+                            marginRight: "1vh",
+                            zIndex: 1
+                          }}
+                          onClick={() => navigate(DASHBOARD.VIDEO_NEW)}
+                        >
+                          새로 제작
+                        </button>
+
+                        <button
+                          ref={buttonRef}
+                          type="button"
+                          hidden={timelapse?.status !== "DONE"}
+                          className="btn bg-gradient-info w-auto my-4 mb-2 omyu-important"
+                          style={{
+                            fontSize: "15px",
+                            marginLeft: "1vh",
+                            zIndex: 1
+                          }}
+                          onClick={() => window.open(vidSrc, "_blank")}
+                        >
+                          다운로드
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

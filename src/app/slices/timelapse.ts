@@ -4,14 +4,24 @@ import { setMessage } from "./message";
 
 import Timelapse from "~/app/api/timelapse";
 
+const UNIX_DATE_START = "1970-01-01T00:00:00.000Z"
+
 const emptyResponse: TimelapseResponseRaw = {
+  id: 0,
+  deviceId: 0,
+  status: "NOT_STARTED",
+  logStartDate: UNIX_DATE_START,
+  logEndDate: UNIX_DATE_START,
+  lastUpdated: UNIX_DATE_START
+};
+
+const errorResponse: TimelapseResponseRaw = {
   id: -1,
   deviceId: -1,
   status: "NOT_STARTED",
-  result: "",
-  logStartDate: "1970-01-01T00:00:00.000Z",
-  logEndDate: "1970-01-01T00:00:00.000Z",
-  lastUpdated: "1970-01-01T00:00:00.000Z"
+  logStartDate: UNIX_DATE_START,
+  logEndDate: UNIX_DATE_START,
+  lastUpdated: UNIX_DATE_START
 };
 
 export const latest = createAsyncThunk(
@@ -80,7 +90,7 @@ const timelapseSlice = createSlice({
       }
     );
     builder.addCase(latest.rejected, state => {
-      state.timelapse = emptyResponse;
+      state.timelapse = errorResponse;
     });
 
     // Latest Detected
@@ -102,7 +112,7 @@ const timelapseSlice = createSlice({
       }
     );
     builder.addCase(request.rejected, state => {
-      state.timelapse = emptyResponse;
+      state.timelapse = errorResponse;
     });
   }
 });

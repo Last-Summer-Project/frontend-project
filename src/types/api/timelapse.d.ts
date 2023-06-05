@@ -2,7 +2,7 @@ interface TimelapseResponseRaw {
   id: number;
   deviceId: number;
   status: Status;
-  result: string;
+  result?: string;
   logStartDate: string;
   logEndDate: string;
   lastUpdated: string;
