@@ -14,7 +14,113 @@
   font-family: "omyu_pretty";
 }
 
+.App {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
 
-#Dashboard {
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
 
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.SidebarWrapper {
+  width: 200px;
+  height: 100%;
+  background-color: rgb(131, 196, 131);
+  padding: 2rem;
+}
+
+.Content {
+  margin: 20px;
+}
+
+.Sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 10%;
+    background-color: #f5f5f5;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
+    overflow-y: auto;
+    }
+
+.Sidebar-ul {
+    border: 10px solid rgb(131, 196, 131);
+    padding: 0;
+    margin: 0;
+}
+
+.Sidebar-li {
+    padding: 10px;
+    cursor: pointer;
+    padding-top: 8rem;
+    border-top: 1px solid gray;
+}
+
+.Sidebar-li:first-child {
+    border-top: none;
+}
+
+@font-face {
+  font-family: 'omyu_pretty';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+.test1{font-family: 'omyu_pretty';}
+
+.bg-test123 {
+  background-color: rgb(146, 190, 169, 1);
+  padding: 0;
+  margin: 0;
+}
+
+.div-left {
+  width: 20%;
+  float: left;
+  box-sizing: border-box;
+  margin-left : 150px;
+  
+}
+.div-right {
+  width: 20%;
+  float: right;
+  box-sizing: border-box;
+  margin-right : 300px;
+}
+.angle {
+  background-color: rgb(76, 142, 110);
 }

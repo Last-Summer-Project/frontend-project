@@ -26,7 +26,7 @@ function Picturecom(props: Props) {
         y="50"
         fill="#eceeef"
         dy=".3em"
-        /*className="w-10 test1"*/
+        /*className="w-10 omyu"*/
         style={{ fontSize: 20 }}
       >
         해당 일자 마지막 사진
@@ -40,7 +40,7 @@ function Picturecom(props: Props) {
         {img}
         <div className="card-body">
           <div className="d-flex justify-content-between align-items-center">
-            <small className="text-muted test1" style={{ fontSize: 20 }}>
+            <small className="text-muted omyu" style={{ fontSize: 20 }}>
               {props.name}
             </small>
           </div>

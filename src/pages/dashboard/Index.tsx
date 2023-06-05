@@ -53,7 +53,7 @@ const Dashboard = () => {
             <div className="col-12">
               <div className="card mb-4">
                 <div className="card-header pb-0">
-                  <h6 className="w-10 test1" style={{ fontSize: 20 }}>
+                  <h6 className="w-10 omyu" style={{ fontSize: 20 }}>
                     대시보드
                   </h6>
                 </div>
@@ -67,10 +67,10 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="div-left test1" style={{ width: "500px" }}>
+      <div className="div-left omyu" style={{ width: "500px" }}>
         <button
           type="button"
-          className="btn w-100 my-1 mb-2 test1"
+          className="btn w-100 my-1 mb-2 omyu"
           style={{
             backgroundColor: "#BAD98B",
             display: "inline-block",
@@ -83,10 +83,10 @@ const Dashboard = () => {
           모 니 터 링
         </button>
       </div>
-      <div className="div-right test1" style={{ width: "500px" }}>
+      <div className="div-right omyu" style={{ width: "500px" }}>
         <button
           type="button"
-          className="btn w-100 my-1 mb-2 test1"
+          className="btn w-100 my-1 mb-2 omyu"
           style={{
             backgroundColor: "#BAD98B",
             display: "inline-block",
@@ -129,7 +129,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <div className="right test1" style={{ right: "0.01px;" }}>
+          <div className="right omyu" style={{ right: "0.01px;" }}>
             <button
               onClick={govideo}
               type="button"
@@ -160,12 +160,12 @@ const Dashboard = () => {
                 <div className="col-8">
                   <div className="numbers">
                     <p
-                      className=" mb-0 text-uppercase font-weight-bold w-30 test1"
+                      className=" mb-0 text-uppercase font-weight-bold w-30 omyu"
                       style={{ fontSize: 20 }}
                     >
                       온도
                     </p>
-                    <p className="test1">온도 테스트입니다°C</p>
+                    <p className="omyu">온도 테스트입니다°C</p>
                   </div>
                 </div>
                 <div className="col-4 text-end">
@@ -198,12 +198,12 @@ const Dashboard = () => {
                 <div className="col-8">
                   <div className="numbers">
                     <p
-                      className=" mb-0 text-uppercase font-weight-bold w-30 test1"
+                      className=" mb-0 text-uppercase font-weight-bold w-30 omyu"
                       style={{ fontSize: 20 }}
                     >
                       습도
                     </p>
-                    <p className="test1">습도 테스트입니다%</p>
+                    <p className="omyu">습도 테스트입니다%</p>
                   </div>
                 </div>
                 <div className="col-4 text-end">
@@ -237,7 +237,7 @@ const Dashboard = () => {
                 <div className="col-8">
                   <div className="numbers">
                     <p
-                      className=" mb-0 text-uppercase font-weight-bold w-30 test1"
+                      className=" mb-0 text-uppercase font-weight-bold w-30 omyu"
                       style={{ fontSize: 20 }}
                     >
                       작물 질병

@@ -29,7 +29,7 @@ const Navbar = () => {
           <a className="navbar-brand m-0" target="_blank">
             <img src={iconImg}></img>
             <span
-              className="ms-1 font-weight-bold w-10 test1"
+              className="ms-1 font-weight-bold w-10 omyu"
               style={{ fontSize: 20 }}
             >
               LastSummer
@@ -69,7 +69,7 @@ const Navbar = () => {
                       )}
                     </div>
                     <span
-                      className="nav-link-text ms-1 w-10 test1"
+                      className="nav-link-text ms-1 w-10 omyu"
                       style={{ fontSize: 20 }}
                     >
                       대시보드
