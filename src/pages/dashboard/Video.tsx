@@ -29,7 +29,7 @@ const Video = () => {
     }
 
     vidLoader();
-  }, [dispatch]);
+  }, [dispatch, navigate, timelapse]);
 
   useInterval(
     () => {

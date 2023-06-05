@@ -7,7 +7,6 @@ import useInterval from "~/components/useInterval";
 import { DASHBOARD, LANDING } from "~/const/url";
 import { detectedPerDay } from "~/app/slices/log";
 import { Form } from "react-bootstrap";
-import { isFulfilled } from "@reduxjs/toolkit";
 
 const VideoNew = () => {
   const navigate = useNavigate();
@@ -17,11 +16,11 @@ const VideoNew = () => {
 
   const dispatch = useAppDispatch();
 
-  let today = new Date();
-  let min = (
+  const today = new Date();
+  const min = (
     logs?.[(logs?.length ?? 1) - 1]?.timestamp ?? "2023-05-30T00:00:00.000Z"
   ).split("T")[0];
-  let max = new Date(
+  const max = new Date(
     new Date(logs?.[0]?.timestamp ?? today.getTime()).getTime() + 86400000
   )
     .toISOString()
@@ -117,6 +116,7 @@ const VideoNew = () => {
                             type="date"
                             min={min}
                             max={max}
+                            onChange={(event) => { setStartDate(event.target.value) }}
                             defaultValue={min}
                           />
                         </Form.Group>
@@ -129,6 +129,7 @@ const VideoNew = () => {
                             type="date"
                             min={min}
                             max={max}
+                            onChange={(event) => { setEndDate(event.target.value) }}
                             defaultValue={max}
                           />
                         </Form.Group>

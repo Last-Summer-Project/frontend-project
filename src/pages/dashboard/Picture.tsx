@@ -15,7 +15,9 @@ const Picture = () => {
     dispatch(detectedPerDay());
   }, [dispatch]);
 
+  // eslint-disable-next-line
   const chunk = (arr: any[], size: number) =>
+    // eslint-disable-next-line
     Array.from({ length: Math.ceil(arr.length / size) }, (_: any, i: number) =>
       arr.slice(i * size, i * size + size)
     );

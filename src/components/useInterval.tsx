@@ -1,7 +1,10 @@
 import { useEffect, useRef } from 'react';
 
-const useInterval = (callback: Function, delay: number | null) => {
-  const savedCallback = useRef<Function | null>(null);
+// eslint-disable-next-line
+type AnyFunction = (...args: any[]) => any
+
+const useInterval = (callback: AnyFunction, delay: number | null) => {
+  const savedCallback = useRef<AnyFunction | null>(null);
 
   useEffect(
     () => {
@@ -12,6 +15,7 @@ const useInterval = (callback: Function, delay: number | null) => {
 
   useEffect(
     () => {
+        // eslint-disable-next-line
       const handler = (...args: any[]) => savedCallback?.current?.(...args);
 
       if (delay !== null) {
