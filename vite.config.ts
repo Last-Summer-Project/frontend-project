@@ -17,6 +17,14 @@ export default defineConfig({
       "/api": {
         target: "http://172.30.1.3",
         changeOrigin: true
+      },
+      "/image": {
+        target: "http://172.30.1.3",
+        changeOrigin: true
+      },
+      "/video": {
+        target: "http://172.30.1.3",
+        changeOrigin: true
       }
     }
   },

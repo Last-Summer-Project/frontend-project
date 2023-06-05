@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import authReducer, { setUserFromToken } from "./slices/auth";
+import logReducer from "./slices/log";
 import messageReducer from "./slices/message";
 import { ACCESS_TOKEN_KEY } from "~/const/auth";
 import { setAuthorizationToken } from "~/api";
 
 const reducer = {
   auth: authReducer,
+  log: logReducer,
   message: messageReducer
 };
 

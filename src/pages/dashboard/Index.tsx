@@ -1,10 +1,13 @@
-import img2 from "~/assets/img/mainbode.png";
-import img4 from "~/assets/img/logo.png";
-import img5 from "~/assets/img/humidity.png";
-import img6 from "~/assets/img/temperature.png";
-import img7 from "~/assets/img/Good.png";
+import bode from "~/assets/img/mainbode.png";
+import Humi from "~/assets/img/humidity.png";
+import Temp from "~/assets/img/temperature.png";
+import Good from "~/assets/img/Good.png";
+import Bad from "~/assets/img/Bad.png";
 import { useNavigate } from "react-router-dom";
-
+import { useAppDispatch, useAppSelector } from "~/app/hooks";
+import useInterval from "~/components/useInterval";
+import { latestDetected } from "~/app/slices/log";
+import { useEffect } from "react";
 
 const Dashboard = () => {
   const movePage = useNavigate();
@@ -13,9 +16,20 @@ const Dashboard = () => {
     movePage("/video");
   }
 
+  const { log } = useAppSelector(state => state.log);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(latestDetected());
+  }, [dispatch]);
+
+  useInterval(() => {
+    dispatch(latestDetected());
+  }, 30 * 1000);
+
   return (
     <>
-    <main className="main-content position-relative border-radius-lg ">
+      <main className="main-content position-relative border-radius-lg ">
         <nav
           className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl "
           id="navbarBlur"
@@ -33,7 +47,7 @@ const Dashboard = () => {
       .
       <div style={{ height: "2.2rem" }}>
         <img
-          src={img2}
+          src={bode}
           className="mainbode"
           style={{
             top: "-30px",
@@ -41,7 +55,7 @@ const Dashboard = () => {
             position: "relative",
             margin: "0 0 -10px 1400px",
             height: "70px",
-            zIndex: 1,
+            zIndex: 1
           }}
         ></img>
       </div>
@@ -75,7 +89,7 @@ const Dashboard = () => {
             position: "relative",
             fontSize: "23px",
             zIndex: 1,
-            right: "-11rem",
+            right: "-11rem"
           }}
         >
           모 니 터 링
@@ -91,7 +105,7 @@ const Dashboard = () => {
             position: "relative",
             fontSize: "23px",
             zIndex: 1,
-            left: "11rem",
+            left: "11rem"
           }}
         >
           사 진
@@ -106,22 +120,25 @@ const Dashboard = () => {
             width: "500px",
             height: "400px",
             margin: "0 0 0 850px",
-            zIndex: 1,
+            zIndex: 1
           }}
         >
           <div
             className="card"
             style={{
-              width: "640px",
-              height: "360px",
+              width: "720px",
+              height: "405px",
               margin: "0 0 0 180px",
-              zIndex: 1,
+              zIndex: 1
             }}
           >
             <div className="card-body p-3">
               <div className="col-8">
                 <div className="numbers">
-                  <img src={img4} style={{ zIndex: 1 }}></img>
+                  <img
+                    src={"/image/" + log?.imageUrl}
+                    style={{ zIndex: 1, width: "680px", height: "382.5px" }}
+                  ></img>
                   {/*onclick="location.href='picture.html';추가 예정*/}
                 </div>
               </div>
@@ -146,7 +163,7 @@ const Dashboard = () => {
             marginLeft: "360px",
             width: " 400px",
             height: "100px",
-            zIndex: 1,
+            zIndex: 1
           }}
         >
           <div className="card">
@@ -163,12 +180,12 @@ const Dashboard = () => {
                     >
                       온도
                     </p>
-                    <p className="omyu">온도 테스트입니다°C</p>
+                    <p className="omyu">{log?.temperature}°C</p>
                   </div>
                 </div>
                 <div className="col-4 text-end">
                   <img
-                    src={img6}
+                    src={Temp}
                     style={{ width: "50", height: "50", fill: "currentColor" }}
                   ></img>
                 </div>
@@ -184,7 +201,7 @@ const Dashboard = () => {
             marginLeft: "360px",
             width: " 400px",
             height: "100px",
-            zIndex: 1,
+            zIndex: 1
           }}
         >
           <div className="card">
@@ -201,12 +218,12 @@ const Dashboard = () => {
                     >
                       습도
                     </p>
-                    <p className="omyu">습도 테스트입니다%</p>
+                    <p className="omyu">{log?.humidity}%</p>
                   </div>
                 </div>
                 <div className="col-4 text-end">
                   <img
-                    src={img5}
+                    src={Humi}
                     style={{ width: "50", height: "50", fill: "currentColor" }}
                   ></img>
                 </div>
@@ -223,7 +240,7 @@ const Dashboard = () => {
             marginLeft: "360px",
             width: "400px",
             height: "100px",
-            zIndex: 1,
+            zIndex: 1
           }}
         >
           <div className="card">
@@ -244,8 +261,12 @@ const Dashboard = () => {
                 </div>
                 <div className="col-4 text-end">
                   <img
-                    src={img7}
-                    style={{ width: "50", height: "50", fill: "currentColor" }}
+                    src={log?.detection.result == "0" ? Good : Bad}
+                    style={{
+                      width: "87px",
+                      height: "87px",
+                      fill: "currentColor"
+                    }}
                   ></img>
                 </div>
               </div>
@@ -254,7 +275,7 @@ const Dashboard = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Dashboard;
