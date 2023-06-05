@@ -1,7 +1,36 @@
-import video2 from "~/assets/test.mp4";
+import making from "~/assets/test.mp4";
 import img2 from "~/assets/img/video.png";
+import { useAppDispatch, useAppSelector } from "~/app/hooks";
+import { latest } from "~/app/slices/timelapse";
+import { useEffect, useRef } from "react";
+import useInterval from "~/components/useInterval";
 
-export default function Video() {
+const Video = () => {
+  const { timelapse } = useAppSelector(state => state.timelapse);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const vidSrc =
+    timelapse?.status !== "DONE" ? making : "/video/" + timelapse?.result;
+
+  const dispatch = useAppDispatch();
+
+  const vidLoader = () => {
+    videoRef.current?.load();
+  };
+
+  useEffect(() => {
+    dispatch(latest());
+    vidLoader();
+  }, [dispatch]);
+
+  useInterval(
+    () => {
+      dispatch(latest());
+      vidLoader();
+    },
+    timelapse?.status === "DONE" ? null : 10 * 1000
+  );
+
   return (
     <>
       <main className="main-content position-relative border-radius-lg ">
@@ -45,24 +74,35 @@ export default function Video() {
                 </div>
                 <div className="card-body px-0 pt-0 pb-2">
                   <div className="table-responsive p-0">
-                    <div className="table align-items-center justify-content-center mb-0">
+                    <div className="table align-items-center justify-content-center">
                       <video
                         width="720px"
                         height="480px"
                         controls
                         autoPlay
-                        style={{ marginLeft: 270 }}
-                      >
-                        <source src={video2} type="video/mp4" />
-                      </video>
+                        loop
+                        src={vidSrc}
+                        ref={videoRef}
+                        style={{
+                          display: "block",
+                          margin: "0 auto"
+                        }}
+                      ></video>
+
                       <button
+                        ref={buttonRef}
                         type="button"
-                        className="btn bg-gradient-info w-auto my-4 mb-2 "
+                        hidden={timelapse?.status !== "DONE"}
+                        className="btn bg-gradient-info w-auto my-4 mb-2 omyu-important"
                         style={{
                           fontSize: "15px",
-                          margin: "0 0 0 840px",
-                          zIndex: 1
+                          zIndex: 1,
+                          display: "block",
+                          margin: "0 auto"
                         }}
+                        onClick={() =>
+                          window.open("/video/" + timelapse?.result, "_blank")
+                        }
                       >
                         다운로드
                       </button>
@@ -76,4 +116,6 @@ export default function Video() {
       </main>
     </>
   );
-}
+};
+
+export default Video;

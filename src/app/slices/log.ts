@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 import { setMessage } from "./message";
 
-import DeviceLog from "~/api/log";
+import DeviceLog from "~/app/api/log";
 
 const emptyResponse: LogResponseRaw = {
   deviceId: -1,
@@ -12,7 +12,7 @@ const emptyResponse: LogResponseRaw = {
   detection: {
     status: "NOT_STARTED"
   },
-  timestamp: ""
+  timestamp: '1970-01-01T00:00:00.000Z'
 };
 
 export const latest = createAsyncThunk("log/latest", async (_, thunkAPI) => {

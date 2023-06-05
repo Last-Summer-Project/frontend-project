@@ -1,5 +1,5 @@
 export const ENDPOINT = {
-  LATEST: "/log/latest",
-  ALL: "/log/latest-detected",
-  REQUEST: "/log/recent"
+  LATEST: "/timelapse/latest",
+  ALL: "/timelapse/all",
+  REQUEST: "/timelapse/request"
 };

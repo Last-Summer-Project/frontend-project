@@ -8,12 +8,13 @@ import { useAppDispatch, useAppSelector } from "~/app/hooks";
 import useInterval from "~/components/useInterval";
 import { latestDetected } from "~/app/slices/log";
 import { useEffect } from "react";
+import { DASHBOARD } from "~/const/url";
 
 const Dashboard = () => {
   const movePage = useNavigate();
 
   function govideo() {
-    movePage("/video");
+    movePage(DASHBOARD.VIDEO);
   }
 
   const { log } = useAppSelector(state => state.log);
@@ -151,7 +152,7 @@ const Dashboard = () => {
               className="btn bg-gradient-info w-auto my-4 mb-2 "
               style={{ fontSize: "17px", margin: "0 0 0 380px", zIndex: 1 }}
             >
-              영상 만들기
+              영상 페이지
             </button>
           </div>
         </div>
