@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import "~/assets/scss/dashboard/dashboard.scss"
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
 
 interface Props {
   children?: React.ReactElement;

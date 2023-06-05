@@ -43,7 +43,7 @@ const Landing = () => {
     checkLoggedIn(auth, dispatch).then(result => {
       if (result) {
         setMessage("Redirecting to dashboard...");
-        navigate(DASHBOARD);
+        navigate(DASHBOARD.INDEX);
       }
     });
   }, [dispatch, auth, navigate]);
@@ -54,7 +54,7 @@ const Landing = () => {
       .unwrap()
       .then(() => {
         setMessage("Redirecting to dashboard...");
-        navigate(DASHBOARD);
+        navigate(DASHBOARD.INDEX);
       });
   };
 

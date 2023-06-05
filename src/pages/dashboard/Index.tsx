@@ -11,21 +11,10 @@ import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   const movePage = useNavigate();
 
-  function godashboard() {
-    movePage("/");
-  }
-
   function govideo() {
     movePage("/video");
   }
 
-  function gopicture() {
-    movePage("/picture");
-  }
-
-  function gosick() {
-    movePage("/sick");
-  }
   return (
     <>
     <main className="main-content position-relative border-radius-lg ">
