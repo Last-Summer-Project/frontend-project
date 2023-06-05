@@ -4,6 +4,7 @@ import img2 from "~/assets/img/image.png";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "~/app/hooks";
 import { detectedPerDay } from "~/app/slices/log";
+import { IMAGE_HOST } from "~/const/url";
 
 const Picture = () => {
   const { logs } = useAppSelector(state => state.log);
@@ -71,7 +72,7 @@ const Picture = () => {
                                 return (
                                   <Picturecom
                                     name={n}
-                                    img={"/image/" + l.imageUrl}
+                                    img={IMAGE_HOST + l.imageUrl}
                                   />
                                 );
                               })}

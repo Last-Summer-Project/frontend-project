@@ -2,15 +2,19 @@ import making from "~/assets/test.mp4";
 import img2 from "~/assets/img/video.png";
 import { useAppDispatch, useAppSelector } from "~/app/hooks";
 import { latest } from "~/app/slices/timelapse";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import useInterval from "~/components/useInterval";
+import { DASHBOARD, VIDEO_HOST } from "~/const/url";
 
 const Video = () => {
+  const navigate = useNavigate();
+
   const { timelapse } = useAppSelector(state => state.timelapse);
   const videoRef = useRef<HTMLVideoElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const vidSrc =
-    timelapse?.status !== "DONE" ? making : "/video/" + timelapse?.result;
+    timelapse?.status !== "DONE" ? making : VIDEO_HOST + timelapse?.result;
 
   const dispatch = useAppDispatch();
 
@@ -20,6 +24,10 @@ const Video = () => {
 
   useEffect(() => {
     dispatch(latest());
+    if (timelapse?.id == -1) {
+      navigate(DASHBOARD.VIDEO_NEW)
+    }
+
     vidLoader();
   }, [dispatch]);
 
@@ -101,7 +109,7 @@ const Video = () => {
                           margin: "0 auto"
                         }}
                         onClick={() =>
-                          window.open("/video/" + timelapse?.result, "_blank")
+                          window.open(vidSrc, "_blank")
                         }
                       >
                         다운로드

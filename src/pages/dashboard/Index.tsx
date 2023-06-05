@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "~/app/hooks";
 import useInterval from "~/components/useInterval";
 import { latestDetected } from "~/app/slices/log";
 import { useEffect } from "react";
-import { DASHBOARD } from "~/const/url";
+import { DASHBOARD, IMAGE_HOST } from "~/const/url";
 
 const Dashboard = () => {
   const movePage = useNavigate();
@@ -137,7 +137,7 @@ const Dashboard = () => {
               <div className="col-8">
                 <div className="numbers">
                   <img
-                    src={"/image/" + log?.imageUrl}
+                    src={IMAGE_HOST + log?.imageUrl}
                     style={{ zIndex: 1, width: "680px", height: "382.5px" }}
                   ></img>
                   {/*onclick="location.href='picture.html';추가 예정*/}
