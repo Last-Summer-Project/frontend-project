@@ -127,22 +127,16 @@ const Dashboard = () => {
           <div
             className="card"
             style={{
-              width: "720px",
-              height: "405px",
-              margin: "0 0 0 180px",
-              zIndex: 1
+              width: "480px",
+              height: "270px",
             }}
           >
             <div className="card-body p-3">
-              <div className="col-8">
-                <div className="numbers">
                   <img
                     src={IMAGE_HOST + log?.imageUrl}
-                    style={{ zIndex: 1, width: "680px", height: "382.5px" }}
+                    style={{ width: "100%", height: "100%", objectFit: "contain" }}
                   ></img>
                   {/*onclick="location.href='picture.html';추가 예정*/}
-                </div>
-              </div>
             </div>
           </div>
           <div className="right omyu" style={{ right: "0.01px" }}>
