@@ -39,8 +39,6 @@ async function detected_per_day() {
     });
 }
 
-
-
 async function recent() {
   return axiosDefaultInstance
     .get(ENDPOINT.RECENT)

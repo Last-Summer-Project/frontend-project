@@ -1,10 +1,10 @@
 interface DeviceResponseRaw {
-  id: number
-  dateCreated: string
-  lastEdited: string
+  id: number;
+  dateCreated: string;
+  lastEdited: string;
 }
 
 interface DeviceResponse extends DeviceResponseRaw {
-  dateCreated: Date,
-  lastEdited: Date
+  dateCreated: Date;
+  lastEdited: Date;
 }

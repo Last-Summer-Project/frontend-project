@@ -1,10 +1,10 @@
 interface AuthRequest {
-    loginId: string
-    password: string
+  loginId: string;
+  password: string;
 }
 
 interface AuthRefreshRequest {
-    refresh: string
+  refresh: string;
 }
 
 /**
@@ -12,6 +12,6 @@ interface AuthRefreshRequest {
  * @interface
  */
 interface AuthResponse {
-    access: string
-    refresh: string
+  access: string;
+  refresh: string;
 }

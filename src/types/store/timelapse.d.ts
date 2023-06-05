@@ -1,4 +1,4 @@
 interface TimelapseState {
-  timelapse?: TimelapseResponseRaw
-  list?: TimelapseResponseRaw[]
+  timelapse?: TimelapseResponseRaw;
+  list?: TimelapseResponseRaw[];
 }

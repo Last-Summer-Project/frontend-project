@@ -18,7 +18,7 @@ const router = createBrowserRouter(
     <Route>
       <Route path={LANDING} element={<Landing />} />
       <Route path={LOGOUT} element={<Logout />} />
-      <Route path={DASHBOARD.INDEX} element={<DashboardLayout/>}>
+      <Route path={DASHBOARD.INDEX} element={<DashboardLayout />}>
         <Route index element={<Dashboard />} />
         <Route path={DASHBOARD.PICTURE} element={<Picture />} />
         <Route path={DASHBOARD.SICK} element={<Sick />} />

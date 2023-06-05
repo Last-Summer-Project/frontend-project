@@ -8,10 +8,10 @@ interface LogResponseRaw {
 }
 
 interface LogResponse extends LogResponseRaw {
-  timestamp: Date
+  timestamp: Date;
 }
 
 interface Detection {
-  status: Status
+  status: Status;
   result?: string;
 }

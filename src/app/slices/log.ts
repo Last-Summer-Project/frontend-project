@@ -12,7 +12,7 @@ const emptyResponse: LogResponseRaw = {
   detection: {
     status: "NOT_STARTED"
   },
-  timestamp: '1970-01-01T00:00:00.000Z'
+  timestamp: "1970-01-01T00:00:00.000Z"
 };
 
 export const latest = createAsyncThunk("log/latest", async (_, thunkAPI) => {

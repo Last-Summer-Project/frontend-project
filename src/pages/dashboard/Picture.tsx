@@ -70,7 +70,8 @@ const Picture = () => {
                             <div>
                               {ls.map(l => {
                                 const d = new Date(l.timestamp);
-                                const n = `${d.getMonth() + 1}월 ${d.getDate()}일`;
+                                const n = `${d.getMonth() +
+                                  1}월 ${d.getDate()}일`;
                                 return (
                                   <Picturecom
                                     key={l.imageUrl}

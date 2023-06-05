@@ -3,7 +3,7 @@ import { JWTPayload } from "~/types";
 
 export function getTokenData(token: string) {
   try {
-    const decodedJwt = decodeJwt(token) as JWTPayload
+    const decodedJwt = decodeJwt(token) as JWTPayload;
 
     const deviceId = decodedJwt.device_id;
     const loginId = decodedJwt.login_id;
@@ -13,9 +13,9 @@ export function getTokenData(token: string) {
     return {
       deviceId,
       loginId
-    }
-  } catch(_error) {
-    console.error(_error)
+    };
+  } catch (_error) {
+    console.error(_error);
     return null;
   }
 }

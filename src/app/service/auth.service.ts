@@ -8,7 +8,7 @@ function setAuthData(res: AuthResponse | undefined) {
   sessionStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
   localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
 
-  setAuthorizationToken(accessToken)
+  setAuthorizationToken(accessToken);
 }
 
 async function login(loginId: string, password: string) {

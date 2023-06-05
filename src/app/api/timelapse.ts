@@ -18,7 +18,7 @@ export function convertRequest(old: TimelapseRequest): TimelapseRequestRaw {
     deviceId: old.deviceId,
     startDate: old.startDate.toISOString(),
     endDate: old.endDate.toISOString()
-  }
+  };
 }
 
 async function latest() {
@@ -35,7 +35,9 @@ async function all() {
     .get(ENDPOINT.ALL)
     .then(res => responseBody<TimelapseResponseRaw[]>(res))
     .catch(res => {
-      throw errorResponseBody<TimelapseResponse[] | TimelapseResponseRaw[]>(res);
+      throw errorResponseBody<TimelapseResponse[] | TimelapseResponseRaw[]>(
+        res
+      );
     });
 }
 

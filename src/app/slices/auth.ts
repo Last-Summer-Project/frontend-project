@@ -119,12 +119,12 @@ const authSlice = createSlice({
         state.token = action.payload.token;
       }
     );
-    builder.addCase(login.rejected, (state) => {
+    builder.addCase(login.rejected, state => {
       state.isLoggedIn = false;
     });
 
     // Logout
-    builder.addCase(logout.fulfilled, (state) => {
+    builder.addCase(logout.fulfilled, state => {
       state.isLoggedIn = false;
       state.user = null;
       state.token = nullTokenStorage;
@@ -139,14 +139,14 @@ const authSlice = createSlice({
         state.token = action.payload.token;
       }
     );
-    builder.addCase(refresh.rejected, (state) => {
+    builder.addCase(refresh.rejected, state => {
       state.isLoggedIn = false;
       state.user = null;
       state.token = nullTokenStorage;
     });
 
     // Verify
-    builder.addCase(verify.rejected, (state) => {
+    builder.addCase(verify.rejected, state => {
       state.isLoggedIn = false;
       state.user = null;
       state.token = {

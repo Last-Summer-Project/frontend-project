@@ -47,19 +47,23 @@ const VideoNew = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const deviceId = user?.deviceId
+    const deviceId = user?.deviceId;
     if (deviceId === undefined) {
       navigate(LANDING);
       return;
     }
 
-    dispatch(request({
-      deviceId,
-      startDate: new Date(startDate),
-      endDate: new Date(endDate)
-    })).unwrap().then((isFulfilled) => {
-      if (isFulfilled.timelapse?.id ?? -1 > 0 ) navigate(DASHBOARD.VIDEO)
-    })
+    dispatch(
+      request({
+        deviceId,
+        startDate: new Date(startDate),
+        endDate: new Date(endDate)
+      })
+    )
+      .unwrap()
+      .then(isFulfilled => {
+        if (isFulfilled.timelapse?.id ?? -1 > 0) navigate(DASHBOARD.VIDEO);
+      });
   };
 
   return (
@@ -116,7 +120,9 @@ const VideoNew = () => {
                             type="date"
                             min={min}
                             max={max}
-                            onChange={(event) => { setStartDate(event.target.value) }}
+                            onChange={event => {
+                              setStartDate(event.target.value);
+                            }}
                             defaultValue={min}
                           />
                         </Form.Group>
@@ -129,7 +135,9 @@ const VideoNew = () => {
                             type="date"
                             min={min}
                             max={max}
-                            onChange={(event) => { setEndDate(event.target.value) }}
+                            onChange={event => {
+                              setEndDate(event.target.value);
+                            }}
                             defaultValue={max}
                           />
                         </Form.Group>

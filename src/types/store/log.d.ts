@@ -1,4 +1,4 @@
 interface LogState {
-  log?: LogResponseRaw
-  logs?: LogResponseRaw[]
+  log?: LogResponseRaw;
+  logs?: LogResponseRaw[];
 }

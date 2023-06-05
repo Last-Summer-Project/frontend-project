@@ -128,15 +128,15 @@ const Dashboard = () => {
             className="card"
             style={{
               width: "480px",
-              height: "270px",
+              height: "270px"
             }}
           >
             <div className="card-body p-3">
-                  <img
-                    src={IMAGE_HOST + log?.imageUrl}
-                    style={{ width: "100%", height: "100%", objectFit: "contain" }}
-                  ></img>
-                  {/*onclick="location.href='picture.html';추가 예정*/}
+              <img
+                src={IMAGE_HOST + log?.imageUrl}
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}
+              ></img>
+              {/*onclick="location.href='picture.html';추가 예정*/}
             </div>
           </div>
           <div className="right omyu" style={{ right: "0.01px" }}>

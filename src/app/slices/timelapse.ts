@@ -4,7 +4,7 @@ import { setMessage } from "./message";
 
 import Timelapse from "~/app/api/timelapse";
 
-const UNIX_DATE_START = "1970-01-01T00:00:00.000Z"
+const UNIX_DATE_START = "1970-01-01T00:00:00.000Z";
 
 const emptyResponse: TimelapseResponseRaw = {
   id: 0,
