@@ -79,7 +79,7 @@ export default function Sick() {
                 <div className="card mb-4">
                   <div className="card-header pb-0">
                     <h6 className="w-10 omyu" style={{ fontSize: 20 }}>
-                      대시보드
+                      질병
                     </h6>
                   </div>
                   <div className="card-body px-0 pt-0 pb-2">

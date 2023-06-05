@@ -23,13 +23,15 @@ const Video = () => {
   };
 
   useEffect(() => {
-    dispatch(latest());
-    if (timelapse?.id === -1) {
-      navigate(DASHBOARD.VIDEO_NEW);
-    }
-
-    vidLoader();
-  }, [dispatch, navigate, timelapse]);
+    dispatch(latest())
+      .unwrap()
+      .then(v => {
+        if (v?.timelapse?.id === -1) {
+          navigate(DASHBOARD.VIDEO_NEW);
+        }
+        vidLoader();
+      });
+  }, [dispatch, navigate]);
 
   useInterval(
     () => {
