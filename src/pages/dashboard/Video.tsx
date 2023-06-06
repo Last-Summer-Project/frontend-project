@@ -3,7 +3,7 @@ import img2 from "~/assets/img/video.png";
 import { useAppDispatch, useAppSelector } from "~/app/hooks";
 import { latest } from "~/app/slices/timelapse";
 import { useNavigate } from "react-router-dom";
-import { ReactEventHandler, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import useInterval from "~/components/useInterval";
 import { DASHBOARD, VIDEO_HOST } from "~/const/url";
 import { convertResponse } from "~/app/api/timelapse";
