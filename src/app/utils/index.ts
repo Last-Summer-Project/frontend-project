@@ -37,3 +37,23 @@ export async function checkLoggedIn(
 
   return false;
 }
+
+export async function refreshToken(
+  auth: AuthState,
+  dispatch: ThunkDispatch<AppDispatch, undefined, AnyAction> &
+    Dispatch<AnyAction>
+) {
+  if (auth.token.refresh) {
+    try {
+      const refreshed = await dispatch(
+        refresh({ refresh: auth.token.refresh })
+      ).unwrap();
+      if (refreshed.user) return true;
+    } catch (_) {
+      // Pass
+    }
+  }
+
+  return false;
+}
+

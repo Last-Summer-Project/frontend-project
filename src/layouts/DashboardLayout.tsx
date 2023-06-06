@@ -4,8 +4,9 @@ import Navbar from "../components/Navbar";
 import { useAppDispatch, useAppSelector } from "~/app/hooks";
 import { useEffect } from "react";
 import { clearMessage, setMessage } from "~/app/slices/message";
-import { checkLoggedIn } from "~/app/utils";
+import { checkLoggedIn, refreshToken } from "~/app/utils";
 import { LANDING } from "~/const/url";
+import useInterval from "~/components/useInterval";
 
 interface Props {
   children?: React.ReactElement;
@@ -28,6 +29,15 @@ const DashboardLayout = ({ children }: Props) => {
       }
     });
   }, [dispatch, auth, navigate]);
+
+  useInterval(() => {
+    refreshToken(auth, dispatch).then(result => {
+      if (!result) {
+        setMessage("Redirecting to landing page...");
+        navigate(LANDING);
+      }
+    });
+  }, 50 * 60 * 1000);
 
   return (
     <div id="Dashboard">
