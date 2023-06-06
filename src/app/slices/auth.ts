@@ -9,13 +9,13 @@ import { getTokenData } from "~/app/utils/token";
 // Default null
 const nullTokenStorage: TokenStorage = {
   access: null,
-  refresh: null
+  refresh: null,
 };
 
 // Load data
 const tokenStorage: TokenStorage = {
   access: sessionStorage.getItem(ACCESS_TOKEN_KEY),
-  refresh: localStorage.getItem(REFRESH_TOKEN_KEY)
+  refresh: localStorage.getItem(REFRESH_TOKEN_KEY),
 };
 const user = (() => {
   if (!tokenStorage.access) return null;
@@ -32,7 +32,7 @@ export const login = createAsyncThunk(
 
       return {
         user: getTokenData(token),
-        token: response.data ?? nullTokenStorage
+        token: response.data ?? nullTokenStorage,
       };
     } catch (_error) {
       const error = _error as ApiResponse<AuthResponse>;
@@ -79,7 +79,7 @@ export const refresh = createAsyncThunk(
 
       return {
         user: getTokenData(token),
-        token: response.data ?? nullTokenStorage
+        token: response.data ?? nullTokenStorage,
       };
     } catch (_error) {
       const error = _error as ApiResponse<AuthResponse>;
@@ -96,7 +96,7 @@ export const setUserFromToken = createAsyncThunk(
     if (!token) return thunkAPI.rejectWithValue(token);
     return {
       user: getTokenData(token),
-      token: tokenStorage
+      token: tokenStorage,
     };
   }
 );
@@ -109,7 +109,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     // Login
     builder.addCase(
       login.fulfilled,
@@ -119,12 +119,12 @@ const authSlice = createSlice({
         state.token = action.payload.token;
       }
     );
-    builder.addCase(login.rejected, state => {
+    builder.addCase(login.rejected, (state) => {
       state.isLoggedIn = false;
     });
 
     // Logout
-    builder.addCase(logout.fulfilled, state => {
+    builder.addCase(logout.fulfilled, (state) => {
       state.isLoggedIn = false;
       state.user = null;
       state.token = nullTokenStorage;
@@ -139,22 +139,23 @@ const authSlice = createSlice({
         state.token = action.payload.token;
       }
     );
-    builder.addCase(refresh.rejected, state => {
+    builder.addCase(refresh.rejected, (state) => {
       state.isLoggedIn = false;
       state.user = null;
       state.token = nullTokenStorage;
     });
 
     // Verify
-    builder.addCase(verify.rejected, state => {
+    builder.addCase(verify.rejected, (state) => {
       state.isLoggedIn = false;
       state.user = null;
       state.token = {
         access: null,
-        refresh: tokenStorage.refresh ?? localStorage.getItem(REFRESH_TOKEN_KEY)
+        refresh:
+          tokenStorage.refresh ?? localStorage.getItem(REFRESH_TOKEN_KEY),
       };
     });
-  }
+  },
 });
 
 const { reducer } = authSlice;

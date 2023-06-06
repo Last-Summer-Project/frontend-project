@@ -12,7 +12,7 @@ const emptyResponse: TimelapseResponseRaw = {
   status: "NOT_STARTED",
   logStartDate: UNIX_DATE_START,
   logEndDate: UNIX_DATE_START,
-  lastUpdated: UNIX_DATE_START
+  lastUpdated: UNIX_DATE_START,
 };
 
 const errorResponse: TimelapseResponseRaw = {
@@ -21,7 +21,7 @@ const errorResponse: TimelapseResponseRaw = {
   status: "NOT_STARTED",
   logStartDate: UNIX_DATE_START,
   logEndDate: UNIX_DATE_START,
-  lastUpdated: UNIX_DATE_START
+  lastUpdated: UNIX_DATE_START,
 };
 
 export const latest = createAsyncThunk(
@@ -31,7 +31,7 @@ export const latest = createAsyncThunk(
       const response = await Timelapse.latest();
 
       return {
-        timelapse: response.data
+        timelapse: response.data,
       };
     } catch (_error) {
       const error = _error as ApiResponse<LogResponse>;
@@ -47,7 +47,7 @@ export const all = createAsyncThunk("timelapse/all", async (_, thunkAPI) => {
     const response = await Timelapse.all();
 
     return {
-      list: response.data
+      list: response.data,
     };
   } catch (_error) {
     const error = _error as ApiResponse<LogResponse>;
@@ -64,7 +64,7 @@ export const request = createAsyncThunk(
       const response = await Timelapse.request(props);
 
       return {
-        timelapse: response.data
+        timelapse: response.data,
       };
     } catch (_error) {
       const error = _error as ApiResponse<LogResponse>;
@@ -81,7 +81,7 @@ const timelapseSlice = createSlice({
   name: "timelapse",
   initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     // Latest
     builder.addCase(
       latest.fulfilled,
@@ -89,7 +89,7 @@ const timelapseSlice = createSlice({
         state.timelapse = action.payload.timelapse;
       }
     );
-    builder.addCase(latest.rejected, state => {
+    builder.addCase(latest.rejected, (state) => {
       state.timelapse = errorResponse;
     });
 
@@ -100,7 +100,7 @@ const timelapseSlice = createSlice({
         state.list = action.payload.list;
       }
     );
-    builder.addCase(all.rejected, state => {
+    builder.addCase(all.rejected, (state) => {
       state.list = [];
     });
 
@@ -111,10 +111,10 @@ const timelapseSlice = createSlice({
         state.timelapse = action.payload.timelapse;
       }
     );
-    builder.addCase(request.rejected, state => {
+    builder.addCase(request.rejected, (state) => {
       state.timelapse = errorResponse;
     });
-  }
+  },
 });
 
 const { reducer } = timelapseSlice;

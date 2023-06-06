@@ -16,39 +16,39 @@ export default function Sick() {
       title: "막걸리",
       content:
         "막걸리와 설탕을 2대 1로 섞어 원액 제조 후, 원액(소주잔 1컵)에 2L 물을 섞어주세요!",
-      imageUrl: makgoelli
+      imageUrl: makgoelli,
     },
     {
       title: "설탕물",
       content:
         "우유에 백설탕 2스푼을 섞어 잘 녹인 후 해충이 있는 잎 뒷면에 뿌려주세요!",
-      imageUrl: sugar
+      imageUrl: sugar,
     },
     {
       title: "채소껍질",
       content:
         "요리하면서 나오는 채소 껍질 7, 흙을 3의 비율로 섞어 비료로 사용해보세요!",
-      imageUrl: vegetable
+      imageUrl: vegetable,
     },
     {
       title: "달걀 껍질",
       content:
         "달걀 껍데기를 부수어 흙이랑 섞어주세요. 흙을 알칼리성으로 만들어요!",
-      imageUrl: egg
-    }
+      imageUrl: egg,
+    },
   ];
 
   const diseaseData = {
     상추균핵병: [
       "상추의 약한 부위를 통해 침입해요",
       "물러서 썩고 흰 균이 자라며, 감염 부위에는 균핵(덩어리)가 형성돼요",
-      "습도가 높고 15~25℃의 서늘한 상태에서 발생하는 경우가 많아요"
+      "습도가 높고 15~25℃의 서늘한 상태에서 발생하는 경우가 많아요",
     ],
     상추노균병: [
       "공기를 통해 전염되기 때문에 온·습도, 병원균 침입 차단이 중요해요",
       "잎 표면에 반점과 흰 균이 생기며, 아래 잎부터 발생해요",
-      "병든 잎은 끝에서부터 갈색으로 변해요"
-    ]
+      "병든 잎은 끝에서부터 갈색으로 변해요",
+    ],
   };
 
   const sockData = [
@@ -58,7 +58,7 @@ export default function Sick() {
     "-조심히 흙을 떠서 옮겨 심어주세요",
     "-질병이 난 작물을 제거하며 품질을 높여보세요.",
     "-상추의 경우 1차(잎 1~2매) 5cm, 2차(잎 3~4매) 10cm,",
-    "3차(잎 5~6매) 20cm 간격으로 솎아주세요!"
+    "3차(잎 5~6매) 20cm 간격으로 솎아주세요!",
   ];
 
   return (
@@ -122,7 +122,7 @@ export default function Sick() {
                               </h6>
                             </td>
                             <td style={{ width: "100px" }}>
-                              {value.map(item => (
+                              {value.map((item) => (
                                 <p
                                   key={item}
                                   className="w-10 omyu"
@@ -155,7 +155,7 @@ export default function Sick() {
                         <tbody>
                           <tr>
                             <td style={{ width: "100px" }}>
-                              {sockData.map(item => (
+                              {sockData.map((item) => (
                                 <p
                                   key={item}
                                   className="w-10 omyu"
@@ -176,7 +176,7 @@ export default function Sick() {
                       marginTop: "-920px",
                       marginLeft: "700px",
                       width: "400px",
-                      height: "100px"
+                      height: "100px",
                     }}
                   >
                     <Card style={{ width: "430px", height: "530px" }}>

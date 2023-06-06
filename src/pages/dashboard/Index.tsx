@@ -17,7 +17,7 @@ const Dashboard = () => {
     movePage(DASHBOARD.VIDEO);
   }
 
-  const { log } = useAppSelector(state => state.log);
+  const { log } = useAppSelector((state) => state.log);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const Dashboard = () => {
             position: "relative",
             margin: "0 0 -10px 1400px",
             height: "70px",
-            zIndex: 1
+            zIndex: 1,
           }}
         ></img>
       </div>
@@ -85,7 +85,7 @@ const Dashboard = () => {
             position: "relative",
             fontSize: "23px",
             zIndex: 1,
-            right: "-11rem"
+            right: "-11rem",
           }}
         >
           모 니 터 링
@@ -101,7 +101,7 @@ const Dashboard = () => {
             position: "relative",
             fontSize: "23px",
             zIndex: 1,
-            left: "11rem"
+            left: "11rem",
           }}
         >
           사 진
@@ -116,14 +116,14 @@ const Dashboard = () => {
             width: "500px",
             height: "400px",
             margin: "0 0 0 850px",
-            zIndex: 1
+            zIndex: 1,
           }}
         >
           <div
             className="card"
             style={{
               width: "480px",
-              height: "270px"
+              height: "270px",
             }}
           >
             <div className="card-body p-3">
@@ -153,7 +153,7 @@ const Dashboard = () => {
             marginLeft: "360px",
             width: " 400px",
             height: "100px",
-            zIndex: 1
+            zIndex: 1,
           }}
         >
           <div className="card">
@@ -170,7 +170,9 @@ const Dashboard = () => {
                     >
                       온도
                     </p>
-                    <p className="omyu" style={{ fontSize: "1.5em" }}>{log?.temperature}°C</p>
+                    <p className="omyu" style={{ fontSize: "1.5em" }}>
+                      {log?.temperature}°C
+                    </p>
                   </div>
                 </div>
                 <div className="col-4 text-end">
@@ -191,7 +193,7 @@ const Dashboard = () => {
             marginLeft: "360px",
             width: " 400px",
             height: "100px",
-            zIndex: 1
+            zIndex: 1,
           }}
         >
           <div className="card">
@@ -208,7 +210,9 @@ const Dashboard = () => {
                     >
                       습도
                     </p>
-                    <p className="omyu" style={{ fontSize: "1.5em" }}>{log?.humidity}%</p>
+                    <p className="omyu" style={{ fontSize: "1.5em" }}>
+                      {log?.humidity}%
+                    </p>
                   </div>
                 </div>
                 <div className="col-4 text-end">
@@ -230,7 +234,7 @@ const Dashboard = () => {
             marginLeft: "360px",
             width: "400px",
             height: "100px",
-            zIndex: 1
+            zIndex: 1,
           }}
         >
           <div className="card">
@@ -248,7 +252,7 @@ const Dashboard = () => {
                         color:
                           log?.detection.result === "0"
                             ? "inherit"
-                            : "rebeccapurple"
+                            : "rebeccapurple",
                       }}
                     >
                       작물 질병
@@ -275,7 +279,7 @@ const Dashboard = () => {
                     style={{
                       width: "87px",
                       height: "87px",
-                      fill: "currentColor"
+                      fill: "currentColor",
                     }}
                   ></img>
                   <button

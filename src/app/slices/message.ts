@@ -11,8 +11,8 @@ const messageSlice = createSlice({
     },
     clearMessage: () => {
       return { message: "" };
-    }
-  }
+    },
+  },
 });
 
 const { reducer, actions } = messageSlice;

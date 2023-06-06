@@ -15,14 +15,14 @@ interface Props {
 const DashboardLayout = ({ children }: Props) => {
   const navigate = useNavigate();
 
-  const auth = useAppSelector(state => state.auth);
+  const auth = useAppSelector((state) => state.auth);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(clearMessage());
 
-    checkLoggedIn(auth, dispatch).then(result => {
+    checkLoggedIn(auth, dispatch).then((result) => {
       if (!result) {
         setMessage("Redirecting to landing page...");
         navigate(LANDING);
@@ -31,7 +31,7 @@ const DashboardLayout = ({ children }: Props) => {
   }, [dispatch, auth, navigate]);
 
   useInterval(() => {
-    refreshToken(auth, dispatch).then(result => {
+    refreshToken(auth, dispatch).then((result) => {
       if (!result) {
         setMessage("Redirecting to landing page...");
         navigate(LANDING);

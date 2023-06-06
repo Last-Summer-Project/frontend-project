@@ -5,7 +5,7 @@ export const DASHBOARD = {
   PICTURE: "/dashboard/picture",
   VIDEO: "/dashboard/video",
   VIDEO_NEW: "/dashboard/video/new",
-  SICK: "/dashboard/sick"
+  SICK: "/dashboard/sick",
 };
 
 export const IMAGE_HOST = "/image/";

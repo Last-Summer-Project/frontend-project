@@ -7,7 +7,7 @@ import { detectedPerDay } from "~/app/slices/log";
 import { IMAGE_HOST } from "~/const/url";
 
 const Picture = () => {
-  const { logs } = useAppSelector(state => state.log);
+  const { logs } = useAppSelector((state) => state.log);
 
   const dispatch = useAppDispatch();
 
@@ -48,7 +48,7 @@ const Picture = () => {
             position: "relative",
             margin: "0 0 -10px 1150px",
             height: "70px",
-            zIndex: 1
+            zIndex: 1,
           }}
         ></img>
       </div>
@@ -68,10 +68,11 @@ const Picture = () => {
                         <div className="align-items-center justify-content-center mb-0">
                           {chunk(logs ?? [], 3).map((ls: LogResponseRaw[]) => (
                             <div>
-                              {ls.map(l => {
+                              {ls.map((l) => {
                                 const d = new Date(l.timestamp);
-                                const n = `${d.getMonth() +
-                                  1}월 ${d.getDate()}일`;
+                                const n = `${
+                                  d.getMonth() + 1
+                                }월 ${d.getDate()}일`;
                                 return (
                                   <Picturecom
                                     key={l.imageUrl}

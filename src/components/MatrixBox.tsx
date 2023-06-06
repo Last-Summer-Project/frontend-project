@@ -9,14 +9,14 @@ interface MatrixBoxProps {
 export default function MatrixBox({
   title,
   content,
-  imageUrl
+  imageUrl,
 }: MatrixBoxProps) {
   return (
     <div className="matrix-box">
       <div
         className="pic"
         style={{
-          backgroundImage: `url(${imageUrl})`
+          backgroundImage: `url(${imageUrl})`,
         }}
       >
         <div className="text">

@@ -9,7 +9,7 @@ export function convertResponse(old: TimelapseResponseRaw): TimelapseResponse {
     result: old.result,
     logStartDate: new Date(old.logStartDate),
     logEndDate: new Date(old.logEndDate),
-    lastUpdated: new Date(old.lastUpdated)
+    lastUpdated: new Date(old.lastUpdated),
   };
 }
 
@@ -17,15 +17,15 @@ export function convertRequest(old: TimelapseRequest): TimelapseRequestRaw {
   return {
     deviceId: old.deviceId,
     startDate: old.startDate.toISOString(),
-    endDate: old.endDate.toISOString()
+    endDate: old.endDate.toISOString(),
   };
 }
 
 async function latest() {
   return axiosDefaultInstance
     .get(ENDPOINT.LATEST)
-    .then(res => responseBody<TimelapseResponseRaw>(res))
-    .catch(res => {
+    .then((res) => responseBody<TimelapseResponseRaw>(res))
+    .catch((res) => {
       throw errorResponseBody<TimelapseResponse | TimelapseResponseRaw>(res);
     });
 }
@@ -33,8 +33,8 @@ async function latest() {
 async function all() {
   return axiosDefaultInstance
     .get(ENDPOINT.ALL)
-    .then(res => responseBody<TimelapseResponseRaw[]>(res))
-    .catch(res => {
+    .then((res) => responseBody<TimelapseResponseRaw[]>(res))
+    .catch((res) => {
       throw errorResponseBody<TimelapseResponse[] | TimelapseResponseRaw[]>(
         res
       );
@@ -44,8 +44,8 @@ async function all() {
 async function request(data: TimelapseRequest) {
   return axiosDefaultInstance
     .post(ENDPOINT.REQUEST, convertRequest(data))
-    .then(res => responseBody<TimelapseResponseRaw>(res))
-    .catch(res => {
+    .then((res) => responseBody<TimelapseResponseRaw>(res))
+    .catch((res) => {
       throw errorResponseBody<TimelapseResponse | TimelapseResponseRaw>(res);
     });
 }
@@ -53,7 +53,7 @@ async function request(data: TimelapseRequest) {
 const Timelapse = {
   latest,
   all,
-  request
+  request,
 };
 
 export default Timelapse;

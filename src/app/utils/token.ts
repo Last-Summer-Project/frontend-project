@@ -12,7 +12,7 @@ export function getTokenData(token: string) {
 
     return {
       deviceId,
-      loginId
+      loginId,
     };
   } catch (_error) {
     console.error(_error);

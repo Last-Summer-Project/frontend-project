@@ -56,4 +56,3 @@ export async function refreshToken(
 
   return false;
 }
-

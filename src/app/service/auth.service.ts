@@ -12,7 +12,7 @@ function setAuthData(res: AuthResponse | undefined) {
 }
 
 async function login(loginId: string, password: string) {
-  return Auth.login({ loginId, password }).then(res => {
+  return Auth.login({ loginId, password }).then((res) => {
     setAuthData(res.data);
 
     return res;
@@ -25,7 +25,7 @@ function logout() {
 }
 
 async function refresh(refresh: string) {
-  return Auth.refresh({ refresh }).then(res => {
+  return Auth.refresh({ refresh }).then((res) => {
     setAuthData(res.data);
 
     return res;
@@ -40,7 +40,7 @@ const AuthService = {
   login,
   logout,
   refresh,
-  verify
+  verify,
 };
 
 export default AuthService;

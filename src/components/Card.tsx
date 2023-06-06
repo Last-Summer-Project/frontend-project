@@ -9,7 +9,7 @@ interface CardProps {
 export default function MatriBoard({
   children,
   style = {},
-  additionalClassName = ""
+  additionalClassName = "",
 }: CardProps) {
   return (
     <div className={`card ${additionalClassName}`} style={style}>

@@ -10,9 +10,9 @@ const emptyResponse: LogResponseRaw = {
   temperature: -1,
   imageUrl: "",
   detection: {
-    status: "NOT_STARTED"
+    status: "NOT_STARTED",
   },
-  timestamp: "1970-01-01T00:00:00.000Z"
+  timestamp: "1970-01-01T00:00:00.000Z",
 };
 
 export const latest = createAsyncThunk("log/latest", async (_, thunkAPI) => {
@@ -20,7 +20,7 @@ export const latest = createAsyncThunk("log/latest", async (_, thunkAPI) => {
     const response = await DeviceLog.latest();
 
     return {
-      log: response.data
+      log: response.data,
     };
   } catch (_error) {
     const error = _error as ApiResponse<LogResponse>;
@@ -37,7 +37,7 @@ export const latestDetected = createAsyncThunk(
       const response = await DeviceLog.latest_detected();
 
       return {
-        log: response.data
+        log: response.data,
       };
     } catch (_error) {
       const error = _error as ApiResponse<LogResponse>;
@@ -55,7 +55,7 @@ export const detectedPerDay = createAsyncThunk(
       const response = await DeviceLog.detected_per_day();
 
       return {
-        logs: response.data
+        logs: response.data,
       };
     } catch (_error) {
       const error = _error as ApiResponse<LogResponse>;
@@ -72,7 +72,7 @@ const logSlice = createSlice({
   name: "log",
   initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     // Latest
     builder.addCase(
       latest.fulfilled,
@@ -80,7 +80,7 @@ const logSlice = createSlice({
         state.log = action.payload.log;
       }
     );
-    builder.addCase(latest.rejected, state => {
+    builder.addCase(latest.rejected, (state) => {
       state.log = emptyResponse;
     });
 
@@ -91,7 +91,7 @@ const logSlice = createSlice({
         state.log = action.payload.log;
       }
     );
-    builder.addCase(latestDetected.rejected, state => {
+    builder.addCase(latestDetected.rejected, (state) => {
       state.log = emptyResponse;
     });
 
@@ -102,10 +102,10 @@ const logSlice = createSlice({
         state.logs = action.payload.logs;
       }
     );
-    builder.addCase(detectedPerDay.rejected, state => {
+    builder.addCase(detectedPerDay.rejected, (state) => {
       state.logs = [];
     });
-  }
+  },
 });
 
 const { reducer } = logSlice;

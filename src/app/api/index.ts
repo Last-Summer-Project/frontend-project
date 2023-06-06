@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 
 export const axiosDefaultInstance = axios.create({
-  baseURL: "/api/v1"
+  baseURL: "/api/v1",
 });
 
 export function responseBody<T>(

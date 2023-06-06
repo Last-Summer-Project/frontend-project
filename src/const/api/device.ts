@@ -1,3 +1,3 @@
 export const ENDPOINT = {
-  GET: "/auth/login"
+  GET: "/auth/login",
 };

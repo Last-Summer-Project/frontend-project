@@ -11,12 +11,12 @@ const reducer = {
   auth: authReducer,
   log: logReducer,
   timelapse: timelapseReducer,
-  message: messageReducer
+  message: messageReducer,
 };
 
 const store = configureStore({
   reducer: reducer,
-  devTools: true
+  devTools: true,
 });
 
 const accessToken = sessionStorage.getItem(ACCESS_TOKEN_KEY);

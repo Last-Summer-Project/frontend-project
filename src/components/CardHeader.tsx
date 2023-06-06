@@ -5,7 +5,7 @@ interface CardHeaderProps {
 
 export default function CardHeader({
   children,
-  additionalClassName = ""
+  additionalClassName = "",
 }: CardHeaderProps) {
   return (
     <div className={`card-header ${additionalClassName}`}>

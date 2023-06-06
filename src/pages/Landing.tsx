@@ -18,14 +18,14 @@ const Landing = () => {
   const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
 
-  const auth = useAppSelector(state => state.auth);
+  const auth = useAppSelector((state) => state.auth);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(clearMessage());
 
-    checkLoggedIn(auth, dispatch).then(result => {
+    checkLoggedIn(auth, dispatch).then((result) => {
       if (result) {
         setMessage("Redirecting to dashboard...");
         navigate(DASHBOARD.INDEX);
@@ -74,7 +74,7 @@ const Landing = () => {
                       type="id"
                       placeholder="ID"
                       aria-label="Enter Login ID..."
-                      onChange={event => setLoginId(event.target.value)}
+                      onChange={(event) => setLoginId(event.target.value)}
                     />
                   </div>
                   <div className="col">
@@ -85,7 +85,7 @@ const Landing = () => {
                       type="password"
                       placeholder="PASSWORD"
                       aria-label="Enter password..."
-                      onChange={event => setPassword(event.target.value)}
+                      onChange={(event) => setPassword(event.target.value)}
                     />
                   </div>
                   <div className="col-auto">

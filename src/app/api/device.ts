@@ -4,8 +4,8 @@ import { axiosDefaultInstance, errorResponseBody, responseBody } from ".";
 async function get() {
   return axiosDefaultInstance
     .get(ENDPOINT.GET)
-    .then(res => responseBody<DeviceResponseRaw>(res))
-    .then(res => {
+    .then((res) => responseBody<DeviceResponseRaw>(res))
+    .then((res) => {
       const data = res.data;
       if (!data) throw res;
 
@@ -16,19 +16,19 @@ async function get() {
         data: {
           id: data.id,
           dateCreated: new Date(data.dateCreated),
-          lastEdited: new Date(data.lastEdited)
-        }
+          lastEdited: new Date(data.lastEdited),
+        },
       };
 
       return newRes;
     })
-    .catch(res => {
+    .catch((res) => {
       throw errorResponseBody<AuthResponse>(res);
     });
 }
 
 const Device = {
-  get
+  get,
 };
 
 export default Device;

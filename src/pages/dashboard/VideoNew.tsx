@@ -10,9 +10,9 @@ import { Form } from "react-bootstrap";
 
 const VideoNew = () => {
   const navigate = useNavigate();
-  const { user } = useAppSelector(state => state.auth);
-  const { timelapse } = useAppSelector(state => state.timelapse);
-  const { logs } = useAppSelector(state => state.log);
+  const { user } = useAppSelector((state) => state.auth);
+  const { timelapse } = useAppSelector((state) => state.timelapse);
+  const { logs } = useAppSelector((state) => state.log);
 
   const dispatch = useAppDispatch();
 
@@ -57,11 +57,11 @@ const VideoNew = () => {
       request({
         deviceId,
         startDate: new Date(startDate),
-        endDate: new Date(endDate)
+        endDate: new Date(endDate),
       })
     )
       .unwrap()
-      .then(isFulfilled => {
+      .then((isFulfilled) => {
         if (isFulfilled.timelapse?.id ?? -1 > 0) navigate(DASHBOARD.VIDEO);
       });
   };
@@ -91,7 +91,7 @@ const VideoNew = () => {
                   position: "relative",
                   margin: "0 0 -10px 1100px",
                   height: "70px",
-                  zIndex: 1
+                  zIndex: 1,
                 }}
               ></img>
             </div>
@@ -120,7 +120,7 @@ const VideoNew = () => {
                             type="date"
                             min={min}
                             max={max}
-                            onChange={event => {
+                            onChange={(event) => {
                               setStartDate(event.target.value);
                             }}
                             defaultValue={min}
@@ -135,7 +135,7 @@ const VideoNew = () => {
                             type="date"
                             min={min}
                             max={max}
-                            onChange={event => {
+                            onChange={(event) => {
                               setEndDate(event.target.value);
                             }}
                             defaultValue={max}
@@ -150,7 +150,7 @@ const VideoNew = () => {
                             zIndex: 1,
                             display: "block",
                             marginLeft: "auto",
-                            marginRight: "20px"
+                            marginRight: "20px",
                           }}
                         >
                           제작 시작
