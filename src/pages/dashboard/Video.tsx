@@ -3,7 +3,7 @@ import img2 from "~/assets/img/video.png";
 import { useAppDispatch, useAppSelector } from "~/app/hooks";
 import { latest } from "~/app/slices/timelapse";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { ReactEventHandler, useEffect, useRef } from "react";
 import useInterval from "~/components/useInterval";
 import { DASHBOARD, VIDEO_HOST } from "~/const/url";
 import { convertResponse } from "~/app/api/timelapse";
@@ -11,7 +11,7 @@ import { convertResponse } from "~/app/api/timelapse";
 const Video = () => {
   const navigate = useNavigate();
 
-  const { timelapse } = useAppSelector((state) => state.timelapse);
+  const { timelapse } = useAppSelector(state => state.timelapse);
   const videoRef = useRef<HTMLVideoElement>(null);
   const linkRef = useRef<HTMLAnchorElement>(null);
   const vidSrc =
@@ -26,13 +26,13 @@ const Video = () => {
   useEffect(() => {
     dispatch(latest())
       .unwrap()
-      .then((v) => {
+      .then(v => {
         if ((v?.timelapse?.id ?? -1) < 1) {
           navigate(DASHBOARD.VIDEO_NEW);
         }
         vidLoader();
       })
-      .catch((reason) => {
+      .catch(reason => {
         try {
           const d = reason as ApiResponse<
             TimelapseResponse | TimelapseRequestRaw
@@ -60,6 +60,14 @@ const Video = () => {
     return `LastSummer-Timelapse-${timelapse.logStartDate.getMonth()}월_${timelapse.logStartDate.getDate()}일~${timelapse.logEndDate.getMonth()}월_${timelapse.logEndDate.getDate()}일.mp4`;
   };
 
+  const handleDownload = () => {
+    const anchor = linkRef.current;
+    if (!anchor) return;
+
+    anchor.download = filename(timelapse);
+    return anchor.click();
+  };
+
   return (
     <>
       <main className="main-content position-relative border-radius-lg ">
@@ -85,7 +93,7 @@ const Video = () => {
                   position: "relative",
                   margin: "0 0 -10px 1100px",
                   height: "70px",
-                  zIndex: 1,
+                  zIndex: 1
                 }}
               ></img>
             </div>
@@ -114,7 +122,7 @@ const Video = () => {
                         ref={videoRef}
                         style={{
                           display: "block",
-                          margin: "0 auto",
+                          margin: "0 auto"
                         }}
                       ></video>
 
@@ -129,7 +137,7 @@ const Video = () => {
                           style={{
                             fontSize: "15px",
                             marginRight: "1vh",
-                            zIndex: 1,
+                            zIndex: 1
                           }}
                           onClick={() => navigate(DASHBOARD.VIDEO_NEW)}
                         >
@@ -143,17 +151,19 @@ const Video = () => {
                           style={{
                             fontSize: "15px",
                             marginLeft: "1vh",
-                            zIndex: 1,
+                            zIndex: 1
                           }}
-                          onClick={() => linkRef.current?.click()}
+                          onClick={handleDownload}
                         >
                           다운로드
                         </button>
                         <a
-                          download={filename(timelapse)}
+                          style={{ display: "none" }}
                           href={vidSrc}
                           ref={linkRef}
-                        />
+                        >
+                          Download Video
+                        </a>
                       </div>
                     </div>
                   </div>
