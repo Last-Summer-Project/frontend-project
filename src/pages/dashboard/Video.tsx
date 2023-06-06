@@ -57,7 +57,7 @@ const Video = () => {
   const filename = (_timelapse?: TimelapseResponseRaw) => {
     if(!_timelapse) return "";
     const timelapse = convertResponse(_timelapse)
-    return `LastSummer-Timelapse-${timelapse.logStartDate.getMonth()}월_${timelapse.logStartDate.getDate()}일~${timelapse.logStartDate.getMonth()}월_${timelapse.logStartDate.getDate()}일.mp4`
+    return `LastSummer-Timelapse-${timelapse.logStartDate.getMonth()}월_${timelapse.logStartDate.getDate()}일~${timelapse.logEndDate.getMonth()}월_${timelapse.logEndDate.getDate()}일.mp4`
   }
 
   return (

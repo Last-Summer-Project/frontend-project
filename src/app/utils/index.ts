@@ -17,7 +17,7 @@ export async function checkLoggedIn(
 ) {
   if (auth.isLoggedIn) {
     try {
-      const verified = (await dispatch(verify()).unwrap()) == "ok";
+      const verified = (await dispatch(verify()).unwrap()) === "ok";
       if (verified) return true;
     } catch (_) {
       // Pass
