@@ -11,7 +11,7 @@ import { convertResponse } from "~/app/api/timelapse";
 const Video = () => {
   const navigate = useNavigate();
 
-  const { timelapse } = useAppSelector(state => state.timelapse);
+  const { timelapse } = useAppSelector((state) => state.timelapse);
   const videoRef = useRef<HTMLVideoElement>(null);
   const linkRef = useRef<HTMLAnchorElement>(null);
   const vidSrc =
@@ -26,13 +26,13 @@ const Video = () => {
   useEffect(() => {
     dispatch(latest())
       .unwrap()
-      .then(v => {
+      .then((v) => {
         if ((v?.timelapse?.id ?? -1) < 1) {
           navigate(DASHBOARD.VIDEO_NEW);
         }
         vidLoader();
       })
-      .catch(reason => {
+      .catch((reason) => {
         try {
           const d = reason as ApiResponse<
             TimelapseResponse | TimelapseRequestRaw
@@ -57,7 +57,11 @@ const Video = () => {
   const filename = (_timelapse?: TimelapseResponseRaw) => {
     if (!_timelapse) return "";
     const timelapse = convertResponse(_timelapse);
-    return `LastSummer-Timelapse-${timelapse.logStartDate.getMonth() + 1}월_${timelapse.logStartDate.getDate()}일~${timelapse.logEndDate.getMonth() + 1}월_${timelapse.logEndDate.getDate()}일.mp4`;
+    return `LastSummer-Timelapse-${
+      timelapse.logStartDate.getMonth() + 1
+    }월_${timelapse.logStartDate.getDate()}일~${
+      timelapse.logEndDate.getMonth() + 1
+    }월_${timelapse.logEndDate.getDate()}일.mp4`;
   };
 
   const handleDownload = () => {
@@ -93,7 +97,7 @@ const Video = () => {
                   position: "relative",
                   margin: "0 0 -10px 1100px",
                   height: "70px",
-                  zIndex: 1
+                  zIndex: 1,
                 }}
               ></img>
             </div>
@@ -122,7 +126,7 @@ const Video = () => {
                         ref={videoRef}
                         style={{
                           display: "block",
-                          margin: "0 auto"
+                          margin: "0 auto",
                         }}
                       ></video>
 
@@ -137,7 +141,7 @@ const Video = () => {
                           style={{
                             fontSize: "15px",
                             marginRight: "1vh",
-                            zIndex: 1
+                            zIndex: 1,
                           }}
                           onClick={() => navigate(DASHBOARD.VIDEO_NEW)}
                         >
@@ -151,7 +155,7 @@ const Video = () => {
                           style={{
                             fontSize: "15px",
                             marginLeft: "1vh",
-                            zIndex: 1
+                            zIndex: 1,
                           }}
                           onClick={handleDownload}
                         >
