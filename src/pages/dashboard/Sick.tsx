@@ -72,26 +72,21 @@ export default function Sick() {
           />
         </div>
 
-        <div style={{ height: "10rem", width: "1240px" }}>
-          <div className="container-fluid py-4">
-            <div className="row">
-              <div className="col-12">
-                <div className="card mb-4">
-                  <div className="card-header pb-0">
-                    <h6 className="w-10 omyu" style={{ fontSize: 20 }}>
-                      질병
-                    </h6>
-                  </div>
-                  <div className="card-body px-0 pt-0 pb-2">
-                    <div className="table-responsive p-0">
-                      <table className="table align-items-center justify-content-center mb-0"></table>
-                    </div>
-                  </div>
+      <div style={{ height: "10rem", width: "1250px" }}>
+        <div className="container-fluid py-4">
+          <div className="row">
+            <div className="col-12">
+              <div className="card mb-4">
+                <div className="card-header pb-2">
+                  <h6 className="w-10 omyu" style={{ fontSize: 20 }}>
+                    질병
+                  </h6>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
         <div className="row inner-top-md">
           <div className="container text-center">

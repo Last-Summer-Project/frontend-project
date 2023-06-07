@@ -108,7 +108,7 @@ const Dashboard = () => {
         </button>
       </div>
       <div className="container-fluid py-4" style={{ float: "left" }}>
-        <div style={{ height: "2rem" }}></div>
+        <div style={{ height: "1rem" }}></div>
 
         <div
           className="col-xl-3 col-sm-6 mb-xl-0 mb-4"
