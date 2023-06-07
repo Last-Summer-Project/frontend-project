@@ -3,7 +3,7 @@ import Humi from "~/assets/img/humidity.png";
 import Temp from "~/assets/img/temperature.png";
 import Good from "~/assets/img/Good.png";
 import Bad from "~/assets/img/Bad.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "~/app/hooks";
 import useInterval from "~/components/useInterval";
 import { latestDetected } from "~/app/slices/log";
@@ -127,10 +127,16 @@ const Dashboard = () => {
             }}
           >
             <div className="card-body p-3">
-              <img
-                src={IMAGE_HOST + log?.imageUrl}
-                style={{ width: "100%", height: "100%", objectFit: "contain" }}
-              ></img>
+              <Link to={DASHBOARD.PICTURE}>
+                <img
+                  src={IMAGE_HOST + log?.imageUrl}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
+                ></img>
+              </Link>
               {/*onclick="location.href='picture.html';추가 예정*/}
             </div>
           </div>
