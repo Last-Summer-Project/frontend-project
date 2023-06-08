@@ -66,10 +66,6 @@ export default defineConfig({
             return "vendor_ant-design";
           }
 
-          if (id.includes("rc-")) {
-            return "vendor_rc";
-          }
-
           if (id.includes("@ffmpeg")) {
             return "vendor_ffmpeg";
           }
