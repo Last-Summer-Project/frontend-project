@@ -12,6 +12,7 @@ import { DASHBOARD, LANDING, LOGOUT } from "./const/url";
 import Sick from "./pages/dashboard/Sick";
 import Video from "./pages/dashboard/Video/Index";
 import VideoNew from "./pages/dashboard/Video/New";
+import VideoEdit from "./pages/dashboard/Video/Edit";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
         <Route path={DASHBOARD.SICK} element={<Sick />} />
         <Route path={DASHBOARD.VIDEO} element={<Video />} />
         <Route path={DASHBOARD.VIDEO_NEW} element={<VideoNew />} />
+        <Route path={DASHBOARD.VIDEO_EDIT} element={<VideoEdit />} />
       </Route>
     </Route>
   )

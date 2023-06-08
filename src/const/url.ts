@@ -5,6 +5,7 @@ export const DASHBOARD = {
   PICTURE: "/dashboard/picture",
   VIDEO: "/dashboard/video",
   VIDEO_NEW: "/dashboard/video/new",
+  VIDEO_EDIT: "/dashboard/video/edit",
   SICK: "/dashboard/sick",
 };
 
