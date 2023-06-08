@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import useInterval from "~/components/useInterval";
 import { DASHBOARD, VIDEO_HOST } from "~/const/url";
 import { convertResponse } from "~/app/api/timelapse";
+import { DISABLED_HEAVY_SERVER_WORK } from "~/const/shared";
 
 const Video = () => {
   const navigate = useNavigate();
@@ -144,7 +145,9 @@ const Video = () => {
                       <div
                         className="text-center align-items-center justify-content-center"
                         style={{ display: "block", margin: "0 auto" }}
-                        hidden={timelapse?.status !== "DONE"}
+                        hidden={
+                          timelapse?.status !== "DONE"
+                        }
                       >
                         <button
                           type="button"
@@ -154,7 +157,8 @@ const Video = () => {
                             marginRight: "1vh",
                             zIndex: 1,
                           }}
-                          onClick={() => navigate(DASHBOARD.VIDEO_NEW)}
+                          disabled={DISABLED_HEAVY_SERVER_WORK}
+                          onClick={() => !DISABLED_HEAVY_SERVER_WORK && navigate(DASHBOARD.VIDEO_NEW)}
                         >
                           새로 제작
                         </button>

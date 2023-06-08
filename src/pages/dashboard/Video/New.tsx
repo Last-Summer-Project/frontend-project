@@ -7,6 +7,7 @@ import useInterval from "~/components/useInterval";
 import { DASHBOARD, LANDING } from "~/const/url";
 import { detectedPerDay } from "~/app/slices/log";
 import { Form } from "react-bootstrap";
+import { DISABLED_HEAVY_SERVER_WORK } from "~/const/shared";
 
 const VideoNew = () => {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ const VideoNew = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (DISABLED_HEAVY_SERVER_WORK) return;
 
     const deviceId = user?.deviceId;
     if (deviceId === undefined) {
@@ -145,6 +147,7 @@ const VideoNew = () => {
                         <button
                           type="submit"
                           className="btn bg-gradient-info w-auto my-4 mb-2 omyu-important"
+                          disabled={DISABLED_HEAVY_SERVER_WORK}
                           style={{
                             fontSize: "15px",
                             zIndex: 1,

@@ -4,3 +4,5 @@ export const AUDIO_TEMPLATE_LIST = {
   Echoes: "Echoes.mp3",
   "Over You": "OverYou.mp3",
 };
+
+export const DISABLED_HEAVY_SERVER_WORK = false;
