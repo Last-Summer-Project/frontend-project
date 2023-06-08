@@ -19,7 +19,9 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
   const videoFileUrl = videoUrl ? VIDEO_HOST + videoUrl : undefined;
   const [ffmpegLoaded, setFFmpegLoaded] = useState(false);
   const [videoFile, setVideoFile] = useState<Blob | undefined>();
-  const [videoPlayerState, setVideoPlayerState] = useState<PlayerState | undefined>();
+  const [videoPlayerState, setVideoPlayerState] = useState<
+    PlayerState | undefined
+  >();
   const [videoPlayer, setVideoPlayer] = useState<PlayerReference | undefined>();
   const [sliderValues, setSliderValues] = useState<[number, number]>([0, 100]);
   const [audioValue, setAudioValue] = useState("");
@@ -28,9 +30,14 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
 
   useEffect(() => {
     // loading ffmpeg on startup
-    ffmpeg.load().then(() => {
-      setFFmpegLoaded(true);
-    });
+    const loaded = ffmpeg.isLoaded();
+    if (loaded) {
+      ffmpeg.load().then(() => {
+        setFFmpegLoaded(true);
+      });
+    } else {
+      setFFmpegLoaded(loaded);
+    }
   }, []);
 
   useEffect(() => {
