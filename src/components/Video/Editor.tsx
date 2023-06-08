@@ -31,7 +31,7 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
   useEffect(() => {
     // loading ffmpeg on startup
     const loaded = ffmpeg.isLoaded();
-    if (loaded) {
+    if (!loaded) {
       ffmpeg.load().then(() => {
         setFFmpegLoaded(true);
       });
