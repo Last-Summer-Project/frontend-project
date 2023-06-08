@@ -101,7 +101,6 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
         }
       >
         <div>
-          <h3>비디오 자르기 프리뷰</h3>
           {videoFile && videoFileUrl ? (
             <VideoPlayer
               videoSrc={videoFileUrl}
