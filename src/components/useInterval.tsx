@@ -1,7 +1,5 @@
 import { useEffect, useRef } from "react";
-
-// eslint-disable-next-line
-type AnyFunction = (...args: any[]) => any;
+import { AnyFunction } from "~/types";
 
 const useInterval = (callback: AnyFunction, delay: number | null) => {
   const savedCallback = useRef<AnyFunction | null>(null);

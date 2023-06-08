@@ -5,3 +5,6 @@ interface JWTPayload extends JWTPayload {
   login_id?: string;
   device_id?: number;
 }
+
+// eslint-disable-next-line
+type AnyFunction = (...args: any[]) => any;

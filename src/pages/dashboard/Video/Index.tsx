@@ -72,6 +72,17 @@ const Video = () => {
     return anchor.click();
   };
 
+  const goToEdit = () => {
+    const videoId = timelapse?.result;
+    if (!videoId) return;
+    navigate(DASHBOARD.VIDEO_EDIT, {
+      state: {
+        videoId,
+        outputFileName: filename(timelapse).replace(".mp4", "-Edited.mp4"),
+      },
+    });
+  };
+
   return (
     <>
       <main className="main-content position-relative border-radius-lg ">
@@ -133,11 +144,11 @@ const Video = () => {
                       <div
                         className="text-center align-items-center justify-content-center"
                         style={{ display: "block", margin: "0 auto" }}
+                        hidden={timelapse?.status !== "DONE"}
                       >
                         <button
                           type="button"
-                          hidden={timelapse?.status !== "DONE"}
-                          className="btn bg-gradient-info w-auto my-4 mb-2 omyu-important"
+                          className="btn bg-gradient-warning w-auto my-4 mb-2 omyu-important"
                           style={{
                             fontSize: "15px",
                             marginRight: "1vh",
@@ -150,8 +161,7 @@ const Video = () => {
 
                         <button
                           type="button"
-                          hidden={timelapse?.status !== "DONE"}
-                          className="btn bg-gradient-info w-auto my-4 mb-2 omyu-important"
+                          className="btn bg-gradient-success w-auto my-4 mb-2 omyu-important"
                           style={{
                             fontSize: "15px",
                             marginLeft: "1vh",
@@ -160,6 +170,19 @@ const Video = () => {
                           onClick={handleDownload}
                         >
                           다운로드
+                        </button>
+
+                        <button
+                          type="button"
+                          className="btn bg-gradient-info w-auto my-4 mb-2 omyu-important"
+                          style={{
+                            fontSize: "15px",
+                            marginLeft: "1vh",
+                            zIndex: 1,
+                          }}
+                          onClick={goToEdit}
+                        >
+                          편집
                         </button>
                         <a
                           style={{ display: "none" }}
