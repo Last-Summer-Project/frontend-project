@@ -54,6 +54,14 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id, meta) => {
+          if (id.includes("commonjsHelpers")) {
+            return "commonjsHelpers";
+          }
+
+          if (id.includes("redux")) {
+            return "vendor_redux";
+          }
+
           if (id.includes("video-react")) {
             return "vendor_video-react";
           }
@@ -62,12 +70,24 @@ export default defineConfig({
             return "vendor_bootstrap";
           }
 
+          if (id.includes("react")) {
+            return "vendor_react";
+          }
+
           if (id.includes("antd") || id.includes("@ant-design")) {
             return "vendor_ant-design";
           }
 
+          if (id.includes("rc-")) {
+            return "vendor_rc";
+          }
+
           if (id.includes("@ffmpeg")) {
             return "vendor_ffmpeg";
+          }
+
+          if (id.includes("node_modules")) {
+            return "vendor";
           }
         },
       },
