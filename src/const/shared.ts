@@ -1,4 +1,4 @@
 export const AUDIO_TEMPLATE_LIST = {
-  "None": "",
+  "없음": "",
   "Mom": "mom.mp3"
 }

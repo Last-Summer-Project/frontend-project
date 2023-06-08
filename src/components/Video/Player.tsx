@@ -10,16 +10,15 @@ import {
 import "video-react/dist/video-react.css";
 import { useEffect, useState } from "react";
 import { AnyFunction } from "~/types";
-
 interface Prop {
-  src: string;
+  videoSrc: string;
   onPlayerChange?: AnyFunction;
   onChange?: AnyFunction;
   startTime?: number;
 }
 
 const VideoPlayer = ({
-  src,
+  videoSrc,
   onPlayerChange = () => {},
   onChange = () => {},
   startTime = undefined,
@@ -49,7 +48,7 @@ const VideoPlayer = ({
         }}
         startTime={startTime}
       >
-        <source src={src} />
+        <source src={videoSrc} />
         <BigPlayButton position="center" />
         <LoadingSpinner />
         <ControlBar autoHide={false} disableDefaultControls={true}>

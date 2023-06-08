@@ -3,6 +3,7 @@ import { fetchFile, FFmpeg } from "@ffmpeg/ffmpeg";
 import { PlayerState } from "video-react";
 import { AnyFunction } from "~/types";
 import { getBlobFromURL, sliderValueToVideoTime } from "~/app/utils/video";
+import { AUDIO_TEMPLATE_HOST } from "~/const/url";
 
 interface ConversionButtonProps {
   videoPlayerState: PlayerState;
@@ -47,7 +48,7 @@ function ConversionButton({
 
     if (isAudioInput) {
       const inputAudioFileName = "input.mp3";
-      const audio = await getBlobFromURL(`/static/audioTemplate/${audioValue}`);
+      const audio = await getBlobFromURL(AUDIO_TEMPLATE_HOST + audioValue);
       ffmpeg.FS("writeFile", inputAudioFileName, await fetchFile(audio));
 
       // add audio to video
@@ -89,7 +90,7 @@ function ConversionButton({
     onConversionEnd(false);
   };
 
-  return <Button onClick={() => convertToTarget()}>인코딩 시작</Button>;
+  return <Button onClick={() => convertToTarget()}>인코딩 시작 및 다운로드</Button>;
 }
 
 export default ConversionButton;

@@ -1,10 +1,10 @@
 import { createFFmpeg } from "@ffmpeg/ffmpeg";
 import { useEffect, useRef, useState } from "react";
-import { Radio, Select, Slider, Spin } from "antd";
+import { Radio, Slider, Spin } from "antd";
 import VideoPlayer from "./Player";
 import ConversionButton from "./ConversionButton";
 import { PlayerReference, PlayerState } from "video-react";
-import { VIDEO_HOST } from "~/const/url";
+import { AUDIO_TEMPLATE_HOST, VIDEO_HOST } from "~/const/url";
 import { getBlobFromURL, sliderValueToVideoTime } from "~/app/utils/video";
 import { AUDIO_TEMPLATE_LIST } from "~/const/shared";
 
@@ -18,7 +18,7 @@ interface VideoEditorProps {
 function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
   const videoFileUrl = videoUrl ? VIDEO_HOST + videoUrl : undefined;
   const [ffmpegLoaded, setFFmpegLoaded] = useState(false);
-  const [videoFile, setVideoFile] = useState<Blob>();
+  const [videoFile, setVideoFile] = useState<Blob | null>(null);
   const [videoPlayerState, setVideoPlayerState] = useState<PlayerState>();
   const [videoPlayer, setVideoPlayer] = useState<PlayerReference>();
   const [sliderValues, setSliderValues] = useState<[number, number]>([0, 100]);
@@ -32,7 +32,7 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
       setFFmpegLoaded(true);
     });
 
-    // download img
+    // download video
     if (videoFileUrl && videoUrl) {
       getBlobFromURL(videoFileUrl).then((blob) => {
         setVideoFile(blob);
@@ -82,12 +82,17 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
     <div>
       <Spin
         spinning={processing || !ffmpegLoaded}
-        tip={!ffmpegLoaded ? "Waiting for FFmpeg to load..." : "Processing..."}
+        tip={
+          !ffmpegLoaded
+            ? "FFMpeg가 로딩되기를 기다리고 있습니다..."
+            : "처리중입니다..."
+        }
       >
         <div>
+          <h3>비디오 자르기 프리뷰</h3>
           {videoFile ? (
             <VideoPlayer
-              src={videoFileUrl!}
+              videoSrc={videoFileUrl!}
               onPlayerChange={(videoPlayer) => {
                 setVideoPlayer(videoPlayer);
               }}
@@ -99,7 +104,7 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
             <h1>{!videoFileUrl ? "Invalid video url" : "Loading..."}</h1>
           )}
         </div>
-        <div className={"slider-div"}>
+        <div className={"pb-1 pt-1 slider-div"}>
           <h3>비디오 자르기</h3>
           <Slider
             disabled={!videoPlayerState}
@@ -113,7 +118,7 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
             }}
           />
         </div>
-        <div>
+        <div className={"pb-1 pt-1 audio-div"}>
           <h3>오디오 추가</h3>
           <Radio.Group
             onChange={(event) => {
@@ -125,8 +130,14 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
               <Radio value={value}>{key}</Radio>
             ))}
           </Radio.Group>
+          {audioValue && (
+            <div className="pt-1 pb-1">
+              <h5>오디오 프리뷰</h5>
+              <audio src={AUDIO_TEMPLATE_HOST + audioValue} controls />
+            </div>
+          )}
         </div>
-        <div className={"conversion-div"}>
+        <div className={"pb-1 pt-1 conversion-div"}>
           <ConversionButton
             outputFileName={outputFileName}
             onConversionStart={() => {
