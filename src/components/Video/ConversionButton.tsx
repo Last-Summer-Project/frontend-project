@@ -6,10 +6,10 @@ import { getBlobFromURL, sliderValueToVideoTime } from "~/app/utils/video";
 import { AUDIO_TEMPLATE_HOST } from "~/const/url";
 
 interface ConversionButtonProps {
-  videoPlayerState: PlayerState;
+  videoPlayerState?: PlayerState;
   sliderValues: [number, number];
   audioValue: string;
-  videoFile: File | Blob;
+  videoFile?: File | Blob;
   ffmpeg: FFmpeg;
   outputFileName: string;
   onConversionStart?: AnyFunction;
@@ -29,6 +29,8 @@ function ConversionButton({
   onResultCreated,
 }: ConversionButtonProps) {
   const convertToTarget = async () => {
+    if (!videoFile || !videoPlayerState) return;
+
     // starting the conversion process
     onConversionStart?.(true);
 
@@ -40,8 +42,8 @@ function ConversionButton({
     ffmpeg.FS("writeFile", inputVideoFileName, await fetchFile(videoFile));
 
     const [min, max] = sliderValues;
-    const minTime = sliderValueToVideoTime(videoPlayerState.duration, min);
-    const maxTime = sliderValueToVideoTime(videoPlayerState.duration, max);
+    const minTime = sliderValueToVideoTime(videoPlayerState?.duration, min);
+    const maxTime = sliderValueToVideoTime(videoPlayerState?.duration, max);
 
     // build command args
     const command = ["-ss", `${minTime}`, "-i", inputVideoFileName];

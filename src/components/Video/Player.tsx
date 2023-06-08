@@ -30,7 +30,7 @@ const VideoPlayer = ({
     if (playerState) {
       onChange?.(playerState);
     }
-  }, [playerState]);
+  }, [playerState, onChange]);
 
   useEffect(() => {
     onPlayerChange?.(player);
@@ -38,7 +38,7 @@ const VideoPlayer = ({
     if (player) {
       player.subscribeToStateChange(setPlayerState);
     }
-  }, [player]);
+  }, [player, onPlayerChange]);
 
   return (
     <div className={"video-player"}>

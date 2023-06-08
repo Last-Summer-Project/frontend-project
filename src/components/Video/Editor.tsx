@@ -18,9 +18,9 @@ interface VideoEditorProps {
 function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
   const videoFileUrl = videoUrl ? VIDEO_HOST + videoUrl : undefined;
   const [ffmpegLoaded, setFFmpegLoaded] = useState(false);
-  const [videoFile, setVideoFile] = useState<Blob | null>(null);
-  const [videoPlayerState, setVideoPlayerState] = useState<PlayerState>();
-  const [videoPlayer, setVideoPlayer] = useState<PlayerReference>();
+  const [videoFile, setVideoFile] = useState<Blob | undefined>();
+  const [videoPlayerState, setVideoPlayerState] = useState<PlayerState | undefined>();
+  const [videoPlayer, setVideoPlayer] = useState<PlayerReference | undefined>();
   const [sliderValues, setSliderValues] = useState<[number, number]>([0, 100]);
   const [audioValue, setAudioValue] = useState("");
   const [processing, setProcessing] = useState(false);
@@ -35,12 +35,12 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
 
   useEffect(() => {
     // download video
-    if (videoFileUrl && videoUrl) {
+    if (videoFileUrl) {
       getBlobFromURL(videoFileUrl).then((blob) => {
         setVideoFile(blob);
       });
     }
-  }, []);
+  }, [videoFileUrl]);
 
   useEffect(() => {
     const min = sliderValues[0];
@@ -49,6 +49,9 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
     if (min !== undefined && videoPlayerState && videoPlayer) {
       videoPlayer.seek(sliderValueToVideoTime(videoPlayerState.duration, min));
     }
+
+    // This should be only triggered on slider values.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sliderValues]);
 
   useEffect(() => {
@@ -68,7 +71,7 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
         videoPlayer.seek(minTime);
       }
     }
-  }, [videoPlayerState]);
+  }, [videoPlayerState, sliderValues, videoPlayer]);
 
   useEffect(() => {
     // when the current videoFile is removed,
@@ -92,9 +95,9 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
       >
         <div>
           <h3>비디오 자르기 프리뷰</h3>
-          {videoFile ? (
+          {videoFile && videoFileUrl ? (
             <VideoPlayer
-              videoSrc={videoFileUrl!}
+              videoSrc={videoFileUrl}
               onPlayerChange={(videoPlayer) => {
                 setVideoPlayer(videoPlayer);
               }}
@@ -149,10 +152,10 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
               setProcessing(false);
             }}
             ffmpeg={ffmpeg}
-            videoPlayerState={videoPlayerState!}
+            videoPlayerState={videoPlayerState}
             sliderValues={sliderValues}
             audioValue={audioValue}
-            videoFile={videoFile!}
+            videoFile={videoFile}
             onResultCreated={(resUrl) => {
               const a = downloadRef?.current;
               if (!a) return;
