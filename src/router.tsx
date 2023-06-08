@@ -10,8 +10,8 @@ import Dashboard from "./pages/dashboard/Index";
 import Picture from "./pages/dashboard/Picture";
 import { DASHBOARD, LANDING, LOGOUT } from "./const/url";
 import Sick from "./pages/dashboard/Sick";
-import Video from "./pages/dashboard/Video";
-import VideoNew from "./pages/dashboard/VideoNew";
+import Video from "./pages/dashboard/Video/Index";
+import VideoNew from "./pages/dashboard/Video/New";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
