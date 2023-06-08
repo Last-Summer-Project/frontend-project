@@ -19,8 +19,8 @@ interface Prop {
 
 const VideoPlayer = ({
   videoSrc,
-  onPlayerChange = () => {},
-  onChange = () => {},
+  onChange,
+  onPlayerChange,
   startTime = undefined,
 }: Prop) => {
   const [player, setPlayer] = useState<PlayerReference | null>(null);
@@ -28,12 +28,12 @@ const VideoPlayer = ({
 
   useEffect(() => {
     if (playerState) {
-      onChange(playerState);
+      onChange?.(playerState);
     }
   }, [playerState]);
 
   useEffect(() => {
-    onPlayerChange(player);
+    onPlayerChange?.(player);
 
     if (player) {
       player.subscribeToStateChange(setPlayerState);

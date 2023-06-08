@@ -31,7 +31,9 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
     ffmpeg.load().then(() => {
       setFFmpegLoaded(true);
     });
+  }, []);
 
+  useEffect(() => {
     // download video
     if (videoFileUrl && videoUrl) {
       getBlobFromURL(videoFileUrl).then((blob) => {

@@ -24,13 +24,13 @@ function ConversionButton({
   videoFile,
   ffmpeg,
   outputFileName = "output.mp4",
-  onConversionStart = () => {},
-  onConversionEnd = () => {},
-  onResultCreated = () => {},
+  onConversionStart,
+  onConversionEnd,
+  onResultCreated,
 }: ConversionButtonProps) {
   const convertToTarget = async () => {
     // starting the conversion process
-    onConversionStart(true);
+    onConversionStart?.(true);
 
     // values
     const inputVideoFileName = "input.mp4";
@@ -44,7 +44,7 @@ function ConversionButton({
     const maxTime = sliderValueToVideoTime(videoPlayerState.duration, max);
 
     // build command args
-    let command = ["-ss", `${minTime}`, "-i", inputVideoFileName];
+    const command = ["-ss", `${minTime}`, "-i", inputVideoFileName];
 
     if (isAudioInput) {
       const inputAudioFileName = "input.mp3";
@@ -84,10 +84,10 @@ function ConversionButton({
     const resultUrl = URL.createObjectURL(
       new Blob([data.buffer], { type: "video/mp4" })
     );
-    onResultCreated(resultUrl);
+    onResultCreated?.(resultUrl);
 
     // ending the conversion process
-    onConversionEnd(false);
+    onConversionEnd?.(false);
   };
 
   return <Button onClick={() => convertToTarget()}>인코딩 시작 및 다운로드</Button>;
