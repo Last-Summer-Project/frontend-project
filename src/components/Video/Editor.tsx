@@ -112,7 +112,7 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
               }}
             />
           ) : (
-            <h1>{!videoFileUrl ? "Invalid video url" : "Loading..."}</h1>
+            <h1>{!videoFileUrl ? "Invalid video url" : "로딩..."}</h1>
           )}
         </div>
         <div className={"pb-1 pt-1 slider-div"}>

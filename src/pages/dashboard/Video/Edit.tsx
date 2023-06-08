@@ -1,8 +1,12 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import VideoEditor from "~/components/Video/Editor";
+import { DASHBOARD } from "~/const/url";
 
 const VideoEdit = () => {
+  const navigate = useNavigate();
   const { state } = useLocation();
+  if (!state) navigate(DASHBOARD.VIDEO);
+
   const { videoId, outputFileName } = state;
 
   return (
