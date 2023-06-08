@@ -6,7 +6,7 @@ export function sliderValueToVideoTime(duration: number, sliderValue: number) {
 
 export async function getBlobFromURL(url: string): Promise<Blob> {
   const response = await axios.get(url, {
-    responseType: 'blob',  // Set the response type to blob
+    responseType: "blob", // Set the response type to blob
   });
 
   return response.data;

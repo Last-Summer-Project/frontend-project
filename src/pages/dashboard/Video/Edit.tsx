@@ -18,11 +18,14 @@ const VideoEdit = () => {
                   </h6>
                 </div>
                 <div className="card-body px-0 pt-0 pb-2">
-                  <div className="align-items-center justify-content-center m-auto pt-4 pb-4" style={{ width: "60%"}}>
-                      <VideoEditor
-                        videoUrl={videoId}
-                        outputFileName={outputFileName}
-                      />
+                  <div
+                    className="align-items-center justify-content-center m-auto pt-4 pb-4"
+                    style={{ width: "60%" }}
+                  >
+                    <VideoEditor
+                      videoUrl={videoId}
+                      outputFileName={outputFileName}
+                    />
                   </div>
                 </div>
               </div>
