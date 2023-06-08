@@ -2,11 +2,12 @@ import { Button } from "antd";
 import { fetchFile, FFmpeg } from "@ffmpeg/ffmpeg";
 import { PlayerState } from "video-react";
 import { AnyFunction } from "~/types";
-import { sliderValueToVideoTime } from "~/app/utils/video";
+import { getBlobFromURL, sliderValueToVideoTime } from "~/app/utils/video";
 
 interface ConversionButtonProps {
   videoPlayerState: PlayerState;
   sliderValues: [number, number];
+  audioValue: string;
   videoFile: File | Blob;
   ffmpeg: FFmpeg;
   outputFileName: string;
@@ -18,6 +19,7 @@ interface ConversionButtonProps {
 function ConversionButton({
   videoPlayerState,
   sliderValues,
+  audioValue,
   videoFile,
   ffmpeg,
   outputFileName = "output.mp4",
@@ -29,25 +31,50 @@ function ConversionButton({
     // starting the conversion process
     onConversionStart(true);
 
-    const inputFileName = "input.mp4";
+    // values
+    const inputVideoFileName = "input.mp4";
+    const isAudioInput = audioValue !== "";
 
     // writing the video file to memory
-    ffmpeg.FS("writeFile", inputFileName, await fetchFile(videoFile));
+    ffmpeg.FS("writeFile", inputVideoFileName, await fetchFile(videoFile));
 
     const [min, max] = sliderValues;
     const minTime = sliderValueToVideoTime(videoPlayerState.duration, min);
     const maxTime = sliderValueToVideoTime(videoPlayerState.duration, max);
 
+    // build command args
+    let command = ["-ss", `${minTime}`, "-i", inputVideoFileName];
+
+    if (isAudioInput) {
+      const inputAudioFileName = "input.mp3";
+      const audio = await getBlobFromURL(`/static/audioTemplate/${audioValue}`);
+      ffmpeg.FS("writeFile", inputAudioFileName, await fetchFile(audio));
+
+      // add audio to video
+      command.push(
+        "-ss",
+        "0",
+        "-i",
+        inputAudioFileName,
+        "-c:v",
+        "copy",
+        "-map",
+        "0:v",
+        "-map",
+        "1:a"
+      );
+    } else {
+      // just copy...
+      command.push("-c:v", "copy");
+    }
+
+    command.push("-to", `${maxTime}`, "-shortest", outputFileName);
+
+    // result
+    console.log("FFMpeg command: " + command.join(" "));
+
     // cutting the video and converting it to GIF with a FFMpeg command
-    await ffmpeg.run(
-      "-i",
-      inputFileName,
-      "-ss",
-      `${minTime}`,
-      "-to",
-      `${maxTime}`,
-      outputFileName
-    );
+    await ffmpeg.run(...command);
 
     // reading the resulting file
     const data = ffmpeg.FS("readFile", outputFileName);

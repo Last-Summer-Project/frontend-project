@@ -1,11 +1,13 @@
 import { createFFmpeg } from "@ffmpeg/ffmpeg";
 import { useEffect, useRef, useState } from "react";
-import { Slider, Spin } from "antd";
+import { Radio, Select, Slider, Spin } from "antd";
 import VideoPlayer from "./Player";
 import ConversionButton from "./ConversionButton";
 import { PlayerReference, PlayerState } from "video-react";
 import { VIDEO_HOST } from "~/const/url";
 import { getBlobFromURL, sliderValueToVideoTime } from "~/app/utils/video";
+import { AUDIO_TEMPLATE_LIST } from "~/const/shared";
+
 const ffmpeg = createFFmpeg({ log: true });
 
 interface VideoEditorProps {
@@ -20,6 +22,7 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
   const [videoPlayerState, setVideoPlayerState] = useState<PlayerState>();
   const [videoPlayer, setVideoPlayer] = useState<PlayerReference>();
   const [sliderValues, setSliderValues] = useState<[number, number]>([0, 100]);
+  const [audioValue, setAudioValue] = useState("");
   const [processing, setProcessing] = useState(false);
   const downloadRef = useRef<HTMLAnchorElement>(null);
 
@@ -110,6 +113,19 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
             }}
           />
         </div>
+        <div>
+          <h3>오디오 추가</h3>
+          <Radio.Group
+            onChange={(event) => {
+              setAudioValue(event.target.value);
+            }}
+            defaultValue=""
+          >
+            {Object.entries(AUDIO_TEMPLATE_LIST).map(([key, value]) => (
+              <Radio value={value}>{key}</Radio>
+            ))}
+          </Radio.Group>
+        </div>
         <div className={"conversion-div"}>
           <ConversionButton
             outputFileName={outputFileName}
@@ -122,9 +138,10 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
             ffmpeg={ffmpeg}
             videoPlayerState={videoPlayerState!}
             sliderValues={sliderValues}
+            audioValue={audioValue}
             videoFile={videoFile!}
             onResultCreated={(resUrl) => {
-              const a = downloadRef?.current
+              const a = downloadRef?.current;
               if (!a) return;
               a.href = resUrl;
               a.click();

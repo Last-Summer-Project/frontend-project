@@ -1,8 +1,4 @@
 import { useLocation } from "react-router-dom";
-import { useEffect, useRef } from "react";
-import useInterval from "~/components/useInterval";
-import { DASHBOARD, VIDEO_HOST } from "~/const/url";
-import { convertResponse } from "~/app/api/timelapse";
 import VideoEditor from "~/components/Video/Editor";
 
 const VideoEdit = () => {
