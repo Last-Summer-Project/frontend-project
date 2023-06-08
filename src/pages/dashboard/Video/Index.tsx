@@ -164,6 +164,7 @@ const Video = () => {
                           className="btn bg-gradient-success w-auto my-4 mb-2 omyu-important"
                           style={{
                             fontSize: "15px",
+                            marginRight: "1vh",
                             marginLeft: "1vh",
                             zIndex: 1,
                           }}
