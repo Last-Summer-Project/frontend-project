@@ -145,9 +145,7 @@ const Video = () => {
                       <div
                         className="text-center align-items-center justify-content-center"
                         style={{ display: "block", margin: "0 auto" }}
-                        hidden={
-                          timelapse?.status !== "DONE"
-                        }
+                        hidden={timelapse?.status !== "DONE"}
                       >
                         <button
                           type="button"
@@ -158,7 +156,10 @@ const Video = () => {
                             zIndex: 1,
                           }}
                           disabled={DISABLED_HEAVY_SERVER_WORK}
-                          onClick={() => !DISABLED_HEAVY_SERVER_WORK && navigate(DASHBOARD.VIDEO_NEW)}
+                          onClick={() =>
+                            !DISABLED_HEAVY_SERVER_WORK &&
+                            navigate(DASHBOARD.VIDEO_NEW)
+                          }
                         >
                           새로 제작
                         </button>

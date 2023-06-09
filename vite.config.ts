@@ -29,15 +29,15 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://172.30.1.3",
+        target: "http://10.100.200.1",
         changeOrigin: true,
       },
       "/image": {
-        target: "http://172.30.1.3",
+        target: "http://10.100.200.1",
         changeOrigin: true,
       },
       "/video": {
-        target: "http://172.30.1.3",
+        target: "http://10.100.200.1",
         changeOrigin: true,
       },
     },

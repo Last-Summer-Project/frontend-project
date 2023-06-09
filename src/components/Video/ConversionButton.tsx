@@ -48,8 +48,8 @@ function ConversionButton({
     // build command args
     const command = ["-ss", `${minTime}`, "-i", inputVideoFileName];
 
+    const inputAudioFileName = "input.mp3";
     if (isAudioInput) {
-      const inputAudioFileName = "input.mp3";
       const audio = await getBlobFromURL(AUDIO_TEMPLATE_HOST + audioValue);
       ffmpeg.FS("writeFile", inputAudioFileName, await fetchFile(audio));
 
@@ -90,6 +90,11 @@ function ConversionButton({
 
     // ending the conversion process
     onConversionEnd?.(false);
+
+    // Unlink
+    ffmpeg.FS("unlink", outputFileName);
+    ffmpeg.FS("unlink", inputVideoFileName);
+    isAudioInput && ffmpeg.FS("unlink", inputAudioFileName);
   };
 
   return (

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import VideoEditor from "~/components/Video/Editor";
 import { DASHBOARD } from "~/const/url";
@@ -5,9 +6,14 @@ import { DASHBOARD } from "~/const/url";
 const VideoEdit = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  if (!state) navigate(DASHBOARD.VIDEO);
 
-  const { videoId, outputFileName } = state;
+  const videoId = state?.videoId;
+  const outputFileName = state?.outputFileName;
+
+  // redirect is state is null
+  useEffect(() => {
+    if (!(videoId && outputFileName)) navigate(DASHBOARD.VIDEO);
+  });
 
   return (
     <>
