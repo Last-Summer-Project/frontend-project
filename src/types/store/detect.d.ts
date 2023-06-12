@@ -1,3 +1,3 @@
 interface DetectState {
-  detect?: Detection
+  detect?: Detection;
 }

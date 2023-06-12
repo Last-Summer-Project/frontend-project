@@ -59,7 +59,7 @@ const UploadPreview = ({ onImgChange }: UploadPreviewProp) => {
       }
     };
     fileReader.readAsDataURL(file);
-  }, [file]);
+  }, [file, onImgChange]);
 
   return (
     <>
