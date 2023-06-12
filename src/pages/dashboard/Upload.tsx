@@ -1,19 +1,19 @@
-import { useAppDispatch, useAppSelector } from "~/app/hooks";
-import { clear, request } from "~/app/slices/detect";
-import { useEffect, useState } from "react";
+import Detect from "~/app/api/detect";
+import { useState } from "react";
 import UploadPreview from "~/components/UploadPreview";
 import { Spin } from "antd";
 
 const VideoNew = () => {
   const [img, setImg] = useState("");
+  const [detect, setDetect] = useState<Detection>();
   const [loading, setLoading] = useState(false);
-
-  const dispatch = useAppDispatch();
-  const { detect } = useAppSelector((state) => state.detect);
 
   const handleUpload = () => {
     setLoading(true);
-    dispatch(request(img)).then(() => setLoading(false));
+    Detect.request(img).then((res) => {
+      setDetect(res.data)
+      setLoading(false);
+    })
   };
 
   const switchCase = (input: string) => {
@@ -28,12 +28,6 @@ const VideoNew = () => {
         return "Unknown";
     }
   };
-
-  useEffect(() => {
-    return () => {
-      dispatch(clear());
-    };
-  }, [dispatch]);
 
   return (
     <>
