@@ -39,42 +39,13 @@ const VideoNew = () => {
   return (
     <>
       <main className="main-content position-relative border-radius-lg ">
-        <nav
-          className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl "
-          id="navbarBlur"
-          data-scroll="false"
-        >
-          <div className="container-fluid py-1 px-3">
-            <nav aria-label="breadcrumb"></nav>
-            <div
-              className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
-              id="navbar"
-            ></div>
-
-            <div style={{ height: "4rem" }}>
-              <img
-                src={img2}
-                className="mainbode"
-                style={{
-                  top: "10px",
-                  display: "inline-block",
-                  position: "relative",
-                  margin: "0 0 -10px 1100px",
-                  height: "70px",
-                  zIndex: 1,
-                }}
-              ></img>
-            </div>
-          </div>
-        </nav>
-
         <div className="container-fluid py-4">
           <div className="row">
             <div className="col-12">
               <div className="card mb-4">
                 <div className="card-header pb-0">
                   <h6 className="w-10 omyu" style={{ fontSize: 20 }}>
-                    영상 제작
+                    이미지 업로드
                   </h6>
                 </div>
                 <div className="card-body px-0 pt-0 pb-2">
