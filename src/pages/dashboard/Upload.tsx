@@ -32,7 +32,7 @@ const VideoNew = () => {
 
   useEffect(() => {
     return () => {
-      clear();
+      dispatch(clear());
     };
   });
 
