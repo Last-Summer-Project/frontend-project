@@ -1,0 +1,3 @@
+interface DetectState {
+  detect?: Detection
+}

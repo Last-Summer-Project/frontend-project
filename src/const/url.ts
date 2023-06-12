@@ -7,6 +7,7 @@ export const DASHBOARD = {
   VIDEO_NEW: "/dashboard/video/new",
   VIDEO_EDIT: "/dashboard/video/edit",
   SICK: "/dashboard/sick",
+  UPLOAD: "/dashboard/upload"
 };
 
 export const IMAGE_HOST = "/image/";

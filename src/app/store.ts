@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer, { setUserFromToken } from "./slices/auth";
 import logReducer from "./slices/log";
 import timelapseReducer from "./slices/timelapse";
+import detectReducer from "./slices/detect";
 import messageReducer from "./slices/message";
 import { ACCESS_TOKEN_KEY } from "~/const/auth";
 import { setAuthorizationToken } from "~/app/api";
@@ -12,6 +13,7 @@ const reducer = {
   log: logReducer,
   timelapse: timelapseReducer,
   message: messageReducer,
+  detect: detectReducer,
 };
 
 const store = configureStore({
