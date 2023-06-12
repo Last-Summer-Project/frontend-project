@@ -33,7 +33,7 @@ const VideoNew = () => {
     return () => {
       dispatch(clear());
     };
-  });
+  }, [dispatch]);
 
   return (
     <>
