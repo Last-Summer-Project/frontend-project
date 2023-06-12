@@ -7,7 +7,6 @@ import { clearMessage, setMessage } from "~/app/slices/message";
 import { checkLoggedIn, refreshToken } from "~/app/utils";
 import { LANDING } from "~/const/url";
 import useInterval from "~/components/useInterval";
-
 interface Props {
   children?: React.ReactElement;
 }

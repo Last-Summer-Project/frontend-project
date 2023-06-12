@@ -1,7 +1,10 @@
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, NavLink } from "react-router-dom";
 
 import iconImg from "~/assets/img/icon.png";
 import mascotImg from "~/assets/img/mascot.png";
+import { DASHBOARD, LOGOUT } from "~/const/url";
 
 const Navbar = () => {
   const selectedIcon: React.ReactNode = (
@@ -26,7 +29,13 @@ const Navbar = () => {
             aria-hidden="true"
             id="iconSidenav"
           ></i>
-          <a className="navbar-brand m-0" target="_blank">
+          <a
+            className="navbar-brand m-0"
+            target="_blank"
+            style={{
+              display: "inline-block",
+            }}
+          >
             <img src={iconImg}></img>
             <span
               className="ms-1 font-weight-bold w-10 omyu"
@@ -35,6 +44,15 @@ const Navbar = () => {
               LastSummer
             </span>
           </a>
+          <Link
+            to={DASHBOARD.UPLOAD}
+            className="m-0 p-0 navbar-brand"
+            style={{
+              display: "inline",
+            }}
+          >
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </Link>
         </div>
 
         <hr className="horizontal dark mt-0"></hr>
@@ -45,7 +63,7 @@ const Navbar = () => {
           <ul className="navbar-nav">
             <li className="nav-item">
               <NavLink
-                to="/dashboard/"
+                to={DASHBOARD.INDEX}
                 className={({ isActive }) =>
                   "nav-link" + (isActive ? " active" : "")
                 }
@@ -81,7 +99,7 @@ const Navbar = () => {
 
             <li className="nav-item">
               <NavLink
-                to="/dashboard/picture"
+                to={DASHBOARD.PICTURE}
                 className={({ isActive }) =>
                   "nav-link" + (isActive ? " active" : "")
                 }
@@ -118,7 +136,7 @@ const Navbar = () => {
 
             <li className="nav-item">
               <NavLink
-                to="/dashboard/sick"
+                to={DASHBOARD.SICK}
                 className={({ isActive }) =>
                   "nav-link" + (isActive ? " active" : "")
                 }
@@ -156,7 +174,7 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <NavLink
-                to="/dashboard/video"
+                to={DASHBOARD.VIDEO}
                 className={({ isActive }) =>
                   "nav-link" + (isActive ? " active" : "")
                 }
@@ -197,7 +215,7 @@ const Navbar = () => {
           className="omyu position-absolute top-100 start-50 translate-middle"
           style={{ marginTop: -13, width: 200 }}
         >
-          <Link to="/logout">
+          <Link to={LOGOUT}>
             <button
               type="button"
               className="btn btn-success w-100  mb-2"

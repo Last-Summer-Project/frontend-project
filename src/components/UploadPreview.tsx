@@ -1,3 +1,5 @@
+import { faImages } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import "~/assets/scss/uploadpreview.scss";
 import { AnyFunction } from "~/types";
@@ -78,7 +80,7 @@ const UploadPreview = ({ onImgChange }: UploadPreviewProp) => {
         {!img && (
           <>
             <div className="icon">
-              <i className="fas fa-images"></i>
+              <FontAwesomeIcon icon={faImages} />
             </div>
             <span className="header" ref={dragTextRef}>
               Drag & Drop
