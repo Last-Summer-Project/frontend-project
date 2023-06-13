@@ -11,9 +11,9 @@ const VideoNew = () => {
   const handleUpload = () => {
     setLoading(true);
     Detect.request(img).then((res) => {
-      setDetect(res.data)
+      setDetect(res.data);
       setLoading(false);
-    })
+    });
   };
 
   const switchCase = (input: string) => {

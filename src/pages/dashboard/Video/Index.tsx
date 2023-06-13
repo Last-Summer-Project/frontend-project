@@ -130,7 +130,7 @@ const Video = () => {
                     <div className="align-items-center justify-content-center">
                       <video
                         width="720px"
-                        height="480px"
+                        height="405px"
                         controls={timelapse?.status === "DONE"}
                         autoPlay
                         loop
@@ -138,7 +138,7 @@ const Video = () => {
                         ref={videoRef}
                         style={{
                           display: "block",
-                          margin: "0 auto",
+                          margin: "37.5px auto",
                         }}
                       ></video>
 

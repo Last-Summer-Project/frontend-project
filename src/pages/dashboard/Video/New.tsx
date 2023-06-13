@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import useInterval from "~/components/useInterval";
 import { DASHBOARD, LANDING } from "~/const/url";
 import { detectedPerDay } from "~/app/slices/log";
-import { Form } from "react-bootstrap";
 import { DISABLED_HEAVY_SERVER_WORK } from "~/const/shared";
+import { Spin } from "antd";
+import NewForm from "~/components/Video/NewForm";
 
 const VideoNew = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const VideoNew = () => {
 
   const today = new Date();
   const min = (
-    logs?.[(logs?.length ?? 1) - 1]?.timestamp ?? "2023-05-30T00:00:00.000Z"
+    logs?.[(logs?.length ?? 1) - 1]?.timestamp ?? "1970-01-01T00:00:00.000Z"
   ).split("T")[0];
   const max = new Date(
     new Date(logs?.[0]?.timestamp ?? today.getTime()).getTime() + 86400000
@@ -29,6 +30,7 @@ const VideoNew = () => {
 
   const [startDate, setStartDate] = useState(min);
   const [endDate, setEndDate] = useState(max);
+  const isPlaceholder = startDate === "1970-01-01";
 
   useEffect(() => {
     dispatch(latest());
@@ -112,53 +114,15 @@ const VideoNew = () => {
                 <div className="card-body px-0 pt-0 pb-2">
                   <div className="table-responsive p-0">
                     <div className="table align-items-center justify-content-center">
-                      <Form onSubmit={handleSubmit}>
-                        <Form.Group
-                          className="mb-3"
-                          controlId="makeVideo.startDate"
-                        >
-                          <Form.Label>시작일</Form.Label>
-                          <Form.Control
-                            type="date"
-                            min={min}
-                            max={max}
-                            onChange={(event) => {
-                              setStartDate(event.target.value);
-                            }}
-                            defaultValue={min}
-                          />
-                        </Form.Group>
-                        <Form.Group
-                          className="mb-3"
-                          controlId="makeVideo.endDate"
-                        >
-                          <Form.Label>종료일</Form.Label>
-                          <Form.Control
-                            type="date"
-                            min={min}
-                            max={max}
-                            onChange={(event) => {
-                              setEndDate(event.target.value);
-                            }}
-                            defaultValue={max}
-                          />
-                        </Form.Group>
-
-                        <button
-                          type="submit"
-                          className="btn bg-gradient-info w-auto my-4 mb-2 omyu-important"
-                          disabled={DISABLED_HEAVY_SERVER_WORK}
-                          style={{
-                            fontSize: "15px",
-                            zIndex: 1,
-                            display: "block",
-                            marginLeft: "auto",
-                            marginRight: "20px",
-                          }}
-                        >
-                          제작 시작
-                        </button>
-                      </Form>
+                      <Spin spinning={isPlaceholder}>
+                        <NewForm
+                          onSubmit={handleSubmit}
+                          setStartDate={setStartDate}
+                          setEndDate={setEndDate}
+                          min={min}
+                          max={max}
+                        />
+                      </Spin>
                     </div>
                   </div>
                 </div>
