@@ -7,7 +7,6 @@ import { useEffect, useRef } from "react";
 import useInterval from "~/components/useInterval";
 import { DASHBOARD, VIDEO_HOST } from "~/const/url";
 import { convertResponse } from "~/app/api/timelapse";
-import { DISABLED_HEAVY_SERVER_WORK } from "~/const/shared";
 
 const Video = () => {
   const navigate = useNavigate();
@@ -155,9 +154,7 @@ const Video = () => {
                             marginRight: "1vh",
                             zIndex: 1,
                           }}
-                          disabled={DISABLED_HEAVY_SERVER_WORK}
                           onClick={() =>
-                            !DISABLED_HEAVY_SERVER_WORK &&
                             navigate(DASHBOARD.VIDEO_NEW)
                           }
                         >
