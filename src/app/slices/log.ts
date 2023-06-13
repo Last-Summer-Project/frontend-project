@@ -71,7 +71,12 @@ const initialState: LogState = { log: emptyResponse, logs: [] };
 const logSlice = createSlice({
   name: "log",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      state = initialState;
+      return initialState;
+    },
+  },
   extraReducers: (builder) => {
     // Latest
     builder.addCase(
@@ -108,5 +113,7 @@ const logSlice = createSlice({
   },
 });
 
-const { reducer } = logSlice;
+const { reducer, actions } = logSlice;
+
+export const { reset } = actions;
 export default reducer;

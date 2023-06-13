@@ -2,6 +2,11 @@ import { AnyAction, Dispatch, ThunkDispatch } from "@reduxjs/toolkit";
 import { AppDispatch } from "../store";
 import { verify } from "../slices/auth";
 import { refresh } from "../slices/auth";
+import { reset as authReset } from "../slices/auth";
+import { reset as detectReset } from "../slices/detect";
+import { reset as logReset } from "../slices/log";
+import { reset as timelapseReset } from "../slices/timelapse";
+import { clearMessage } from "../slices/message";
 
 /**
  * check Logged In. and try refresh if not logged in.
@@ -55,4 +60,12 @@ export async function refreshToken(
   }
 
   return false;
+}
+
+export function resetAll(dispatch: AppDispatch) {
+  dispatch(authReset());
+  dispatch(detectReset());
+  dispatch(logReset());
+  dispatch(timelapseReset());
+  dispatch(clearMessage());
 }

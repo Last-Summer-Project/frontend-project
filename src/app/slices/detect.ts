@@ -28,8 +28,9 @@ const detectSlice = createSlice({
   name: "detect",
   initialState,
   reducers: {
-    clear: () => {
-      return {};
+    reset: (state) => {
+      state = initialState;
+      return initialState;
     },
   },
   extraReducers: (builder) => {
@@ -48,5 +49,5 @@ const detectSlice = createSlice({
 
 const { reducer, actions } = detectSlice;
 
-export const { clear } = actions;
+export const { reset } = actions;
 export default reducer;

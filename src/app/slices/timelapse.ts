@@ -80,7 +80,12 @@ const initialState: TimelapseState = { timelapse: emptyResponse, list: [] };
 const timelapseSlice = createSlice({
   name: "timelapse",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      state = initialState;
+      return initialState;
+    },
+  },
   extraReducers: (builder) => {
     // Latest
     builder.addCase(
@@ -117,5 +122,7 @@ const timelapseSlice = createSlice({
   },
 });
 
-const { reducer } = timelapseSlice;
+const { reducer, actions } = timelapseSlice;
+
+export const { reset } = actions;
 export default reducer;
