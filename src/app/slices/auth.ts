@@ -111,7 +111,7 @@ const authSlice = createSlice({
   reducers: {
     reset: (state) => {
       state = { isLoggedIn: false, user: null, token: tokenStorage };
-      return { isLoggedIn: false, user: null, token: tokenStorage };
+      return state;
     },
   },
   extraReducers: (builder) => {

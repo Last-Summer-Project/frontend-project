@@ -15,7 +15,6 @@ const VideoNew = () => {
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
   const { timelapse } = useAppSelector((state) => state.timelapse);
-  const { logs } = useAppSelector((state) => state.log);
 
   const dispatch = useAppDispatch();
 
@@ -39,7 +38,7 @@ const VideoNew = () => {
             state?.logs?.[(state?.logs?.length ?? 1) - 1]?.timestamp ??
             "1970-01-01T00:00:00.000Z"
           ).split("T")[0];
-          const _max = new Date(state?.logs?.[0]?.timestamp ?? today.getTime())
+          const _max = new Date(state?.logs?.[0]?.timestamp ?? today.getTime());
           const max = new Date(_max.getTime() + 24 * 60 * 60 * 1000)
             .toISOString()
             .split("T")[0];

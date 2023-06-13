@@ -30,7 +30,7 @@ const detectSlice = createSlice({
   reducers: {
     reset: (state) => {
       state = initialState;
-      return initialState;
+      return state;
     },
   },
   extraReducers: (builder) => {
