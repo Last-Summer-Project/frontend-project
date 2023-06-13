@@ -10,8 +10,9 @@ const Logout = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(logout()).then(() => {
-      resetAll(dispatch);
-      navigate(LANDING);
+      resetAll(dispatch).then(() => {
+        navigate(LANDING);
+      });
     });
   }, [dispatch, navigate]);
 

@@ -63,9 +63,11 @@ export async function refreshToken(
 }
 
 export function resetAll(dispatch: AppDispatch) {
-  dispatch(authReset());
-  dispatch(detectReset());
-  dispatch(logReset());
-  dispatch(timelapseReset());
-  dispatch(clearMessage());
+  return Promise.allSettled([
+    dispatch(authReset()),
+    dispatch(detectReset()),
+    dispatch(logReset()),
+    dispatch(timelapseReset()),
+    dispatch(clearMessage()),
+  ]);
 }

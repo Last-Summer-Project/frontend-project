@@ -110,8 +110,8 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      state = initialState;
-      return initialState;
+      state = { isLoggedIn: false, user: null, token: tokenStorage };
+      return { isLoggedIn: false, user: null, token: tokenStorage };
     },
   },
   extraReducers: (builder) => {
