@@ -28,7 +28,6 @@ const VideoNew = () => {
 
   const [startDate, setStartDate] = useState(minDate);
   const [endDate, setEndDate] = useState(maxDate);
-  const isPlaceholder = startDate === "1970-01-01";
 
   useEffect(() => {
     dispatch(latest());
@@ -37,10 +36,11 @@ const VideoNew = () => {
       .then((state) => {
         if (state?.logs?.length ?? 0 > 0) {
           const min = (
-            logs?.[(logs?.length ?? 1) - 1]?.timestamp ??
+            state?.logs?.[(state?.logs?.length ?? 1) - 1]?.timestamp ??
             "1970-01-01T00:00:00.000Z"
           ).split("T")[0];
-          const max = new Date(logs?.[0]?.timestamp ?? tomorrow.getTime())
+          const _max = new Date(state?.logs?.[0]?.timestamp ?? today.getTime())
+          const max = new Date(_max.getTime() + 24 * 60 * 60 * 1000)
             .toISOString()
             .split("T")[0];
           setMinDate(min);
@@ -132,7 +132,7 @@ const VideoNew = () => {
                 <div className="card-body px-0 pt-0 pb-2">
                   <div className="table-responsive p-0">
                     <div className="table align-items-center justify-content-center">
-                      <Spin spinning={isPlaceholder}>
+                      <Spin spinning={isLoading}>
                         <Alert
                           variant="danger"
                           onClose={() => setError("")}
