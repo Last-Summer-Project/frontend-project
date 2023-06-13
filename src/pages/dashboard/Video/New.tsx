@@ -18,8 +18,7 @@ const VideoNew = () => {
 
   const dispatch = useAppDispatch();
 
-  const today = new Date();
-  const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
+  const tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
   const [minDate, setMinDate] = useState("1970-01-01");
   const [maxDate, setMaxDate] = useState(tomorrow.toISOString().split("T")[0]);
   const [isLoading, setIsLoading] = useState(true);
@@ -38,7 +37,7 @@ const VideoNew = () => {
             state?.logs?.[(state?.logs?.length ?? 1) - 1]?.timestamp ??
             "1970-01-01T00:00:00.000Z"
           ).split("T")[0];
-          const _max = new Date(state?.logs?.[0]?.timestamp ?? today.getTime());
+          const _max = new Date(state?.logs?.[0]?.timestamp ?? new Date().getTime());
           const max = new Date(_max.getTime() + 24 * 60 * 60 * 1000)
             .toISOString()
             .split("T")[0];
@@ -52,7 +51,7 @@ const VideoNew = () => {
           setError("Failed to load detection logs");
         }
       });
-  });
+  }, [dispatch]);
 
   useInterval(
     () => {
