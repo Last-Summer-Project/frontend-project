@@ -9,6 +9,7 @@ import { detectedPerDay } from "~/app/slices/log";
 import { DISABLED_HEAVY_SERVER_WORK } from "~/const/shared";
 import { Spin } from "antd";
 import NewForm from "~/components/Video/NewForm";
+import { Alert } from "react-bootstrap";
 
 const VideoNew = () => {
   const navigate = useNavigate();
@@ -19,23 +20,40 @@ const VideoNew = () => {
   const dispatch = useAppDispatch();
 
   const today = new Date();
-  const min = (
-    logs?.[(logs?.length ?? 1) - 1]?.timestamp ?? "1970-01-01T00:00:00.000Z"
-  ).split("T")[0];
-  const max = new Date(
-    new Date(logs?.[0]?.timestamp ?? today.getTime()).getTime() + 86400000
-  )
-    .toISOString()
-    .split("T")[0];
+  const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
+  const [minDate, setMinDate] = useState("1970-01-01");
+  const [maxDate, setMaxDate] = useState(tomorrow.toISOString().split("T")[0]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const [startDate, setStartDate] = useState(min);
-  const [endDate, setEndDate] = useState(max);
+  const [startDate, setStartDate] = useState(minDate);
+  const [endDate, setEndDate] = useState(maxDate);
   const isPlaceholder = startDate === "1970-01-01";
 
   useEffect(() => {
     dispatch(latest());
-    dispatch(detectedPerDay());
-  }, [dispatch]);
+    dispatch(detectedPerDay())
+      .unwrap()
+      .then((state) => {
+        if (state?.logs?.length ?? 0 > 0) {
+          const min = (
+            logs?.[(logs?.length ?? 1) - 1]?.timestamp ??
+            "1970-01-01T00:00:00.000Z"
+          ).split("T")[0];
+          const max = new Date(logs?.[0]?.timestamp ?? tomorrow.getTime())
+            .toISOString()
+            .split("T")[0];
+          setMinDate(min);
+          setStartDate(min);
+          setMaxDate(max);
+          setEndDate(max);
+          setIsLoading(false);
+        } else {
+          setIsLoading(false);
+          setError("Failed to load detection logs");
+        }
+      });
+  });
 
   useInterval(
     () => {
@@ -115,13 +133,27 @@ const VideoNew = () => {
                   <div className="table-responsive p-0">
                     <div className="table align-items-center justify-content-center">
                       <Spin spinning={isPlaceholder}>
-                        <NewForm
-                          onSubmit={handleSubmit}
-                          setStartDate={setStartDate}
-                          setEndDate={setEndDate}
-                          min={min}
-                          max={max}
-                        />
+                        <Alert
+                          variant="danger"
+                          onClose={() => setError("")}
+                          dismissible
+                          show={!!error}
+                        >
+                          <Alert.Heading>
+                            Oh snap! You got an error!
+                          </Alert.Heading>
+                          <p>{error}</p>
+                        </Alert>
+
+                        {!isLoading && (
+                          <NewForm
+                            onSubmit={handleSubmit}
+                            setStartDate={setStartDate}
+                            setEndDate={setEndDate}
+                            min={minDate}
+                            max={maxDate}
+                          />
+                        )}
                       </Spin>
                     </div>
                   </div>
