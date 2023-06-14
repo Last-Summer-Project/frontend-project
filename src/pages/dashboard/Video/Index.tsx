@@ -154,9 +154,7 @@ const Video = () => {
                             marginRight: "1vh",
                             zIndex: 1,
                           }}
-                          onClick={() =>
-                            navigate(DASHBOARD.VIDEO_NEW)
-                          }
+                          onClick={() => navigate(DASHBOARD.VIDEO_NEW)}
                         >
                           새로 제작
                         </button>
