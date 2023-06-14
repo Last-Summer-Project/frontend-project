@@ -5,6 +5,7 @@ import logReducer from "./slices/log";
 import timelapseReducer from "./slices/timelapse";
 import detectReducer from "./slices/detect";
 import messageReducer from "./slices/message";
+import flagReducer from "./slices/flag";
 import { ACCESS_TOKEN_KEY } from "~/const/auth";
 import { setAuthorizationToken } from "~/app/api";
 
@@ -14,6 +15,7 @@ const reducer = {
   timelapse: timelapseReducer,
   message: messageReducer,
   detect: detectReducer,
+  flag: flagReducer,
 };
 
 const store = configureStore({

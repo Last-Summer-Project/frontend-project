@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import { DISABLED_HEAVY_SERVER_WORK } from "~/const/shared";
+import { useAppSelector } from "~/app/hooks";
 import { AnyFunction } from "~/types";
 
 interface NewFormProp {
@@ -17,6 +17,8 @@ const NewForm = ({
   min,
   max,
 }: NewFormProp) => {
+  const { disableHeavyServerWork } = useAppSelector((state) => state.flag);
+
   return (
     <Form onSubmit={onSubmit}>
       <Form.Group className="mb-3" controlId="makeVideo.startDate">
@@ -47,7 +49,7 @@ const NewForm = ({
       <button
         type="submit"
         className="btn bg-gradient-info w-auto my-4 mb-2 omyu-important"
-        disabled={DISABLED_HEAVY_SERVER_WORK}
+        disabled={disableHeavyServerWork}
         style={{
           fontSize: "15px",
           zIndex: 1,

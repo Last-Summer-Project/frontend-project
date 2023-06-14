@@ -5,4 +5,4 @@ export const AUDIO_TEMPLATE_LIST = {
   "Over You": "OverYou.mp3",
 };
 
-export const DISABLED_HEAVY_SERVER_WORK = false;
+export const DISABLED_HEAVY_SERVER_WORK = true;

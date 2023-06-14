@@ -6,15 +6,16 @@ import { useEffect, useState } from "react";
 import useInterval from "~/components/useInterval";
 import { DASHBOARD, LANDING } from "~/const/url";
 import { detectedPerDay } from "~/app/slices/log";
-import { DISABLED_HEAVY_SERVER_WORK } from "~/const/shared";
 import { Spin } from "antd";
 import NewForm from "~/components/Video/NewForm";
 import { Alert } from "react-bootstrap";
+import { toggleHeavyServerWork } from "~/app/slices/flag";
 
 const VideoNew = () => {
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
   const { timelapse } = useAppSelector((state) => state.timelapse);
+  const { disableHeavyServerWork } = useAppSelector((state) => state.flag);
 
   const dispatch = useAppDispatch();
 
@@ -67,7 +68,7 @@ const VideoNew = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (DISABLED_HEAVY_SERVER_WORK) return;
+    if (disableHeavyServerWork) return;
 
     const deviceId = user?.deviceId;
     if (deviceId === undefined) {
@@ -114,6 +115,9 @@ const VideoNew = () => {
                   margin: "0 0 -10px 1100px",
                   height: "70px",
                   zIndex: 1,
+                }}
+                onClick={() => {
+                  dispatch(toggleHeavyServerWork());
                 }}
               ></img>
             </div>

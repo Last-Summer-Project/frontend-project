@@ -1,0 +1,3 @@
+interface FlagState {
+  disableHeavyServerWork: boolean;
+}
