@@ -71,7 +71,7 @@ function ConversionButton({
       command.push("-c:v", "copy");
     }
 
-    command.push("-to", `${maxTime}`, "-shortest", outputFileName);
+    command.push("-to", `${maxTime - minTime}`, "-shortest", outputFileName);
 
     // result
     console.log("FFMpeg command: " + command.join(" "));

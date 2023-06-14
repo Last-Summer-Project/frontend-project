@@ -132,13 +132,16 @@ function VideoEditor({ videoUrl, outputFileName }: VideoEditorProps) {
         <div className={"pb-1 pt-1 audio-div"}>
           <h3>오디오 추가</h3>
           <Radio.Group
+            disabled={!videoPlayerState}
             onChange={(event) => {
               setAudioValue(event.target.value);
             }}
             defaultValue=""
           >
             {Object.entries(AUDIO_TEMPLATE_LIST).map(([key, value]) => (
-              <Radio value={value}>{key}</Radio>
+              <Radio value={value} key={key}>
+                {key}
+              </Radio>
             ))}
           </Radio.Group>
           {audioValue && (
