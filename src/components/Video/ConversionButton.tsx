@@ -98,7 +98,9 @@ function ConversionButton({
   };
 
   return (
-    <Button onClick={() => convertToTarget()}>인코딩 시작 및 다운로드</Button>
+    <Button disabled={!videoPlayerState} onClick={() => convertToTarget()}>
+      인코딩 시작 및 다운로드
+    </Button>
   );
 }
 
